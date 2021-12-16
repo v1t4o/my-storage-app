@@ -59,14 +59,14 @@ describe 'Visitante cadastra um galpão' do
 
     expect(page).not_to have_content 'Galpão registrado com sucesso'
     expect(page).to have_content 'Não foi possível gravar o galpão'
-    expect(page).to have_content "Name can't be blank"
-    expect(page).to have_content "Code can't be blank"
-    expect(page).to have_content "Description can't be blank"
-    expect(page).to have_content "Address can't be blank"
-    expect(page).to have_content "City can't be blank"
-    expect(page).to have_content "State can't be blank"
-    expect(page).to have_content "Postal code can't be blank"
-    expect(page).to have_content "Total area can't be blank"
-    expect(page).to have_content "Useful area can't be blank"
+    expect(page).to have_content "Nome não pode ficar em branco"
+    expect(page).to have_content "Código não pode ficar em branco"
+    expect(page).to have_content "Descrição não pode ficar em branco"
+    expect(page).to have_content "Endereço não pode ficar em branco"
+    expect(page).to have_content "Cidade não pode ficar em branco"
+    expect(page).to have_content "Estado não pode ficar em branco"
+    expect(page).to have_content "CEP não pode ficar em branco"
+    expect(page).to have_content "Área Total não pode ficar em branco"
+    expect(page).to have_content "Área Útil não pode ficar em branco"
   end
 end
