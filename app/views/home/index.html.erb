@@ -1,0 +1,16 @@
+<h1>My Storage App</h1>
+<h2>Boas vindas ao sistema de gestão de estoques</h2>
+
+<h3>Galpões cadastrados</h3>
+<table>
+  <tr>
+    <th>Nome</th>
+    <th>Código</th>
+  <tr>
+  <% @warehouses.each do |warehouse| %>
+    <tr>
+      <td><%= warehouse.name %></td>
+      <td><%= warehouse.code %></td>
+    <tr>
+  <% end %>
+</table>
