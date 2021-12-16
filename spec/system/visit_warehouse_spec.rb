@@ -24,4 +24,16 @@ describe 'Visitante vê um galpão' do
 
   end
   
+  it 'e consegue voltar para a tela inicial' do
+    Warehouse.create(name: 'Maceió', code: 'MCZ', description: 'Ótimo galpão numa linda cidade',
+                     address: 'Av Fernandes Lima', city: 'Maceió', state: 'AL',
+                     postal_code: '57050-000',
+                     total_area: 10000, useful_area: 8000)
+
+    visit root_path
+    click_on 'Maceió'
+    click_on 'Voltar'
+
+    expect(current_path).to eq root_path
+  end
 end
