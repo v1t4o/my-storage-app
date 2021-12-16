@@ -11,6 +11,17 @@
   </head>
 
   <body>
-    <%= yield %>
+    <header>
+      <nav>
+        <%= link_to 'Cadastrar novo galpão', new_warehouse_path %>
+      </nav>
+    </header>
+    <main>
+      <%= flash[:notice] %>
+      <%= yield %>
+    </main>
+    <footer>
+      My Storage App 2021
+    </footer>
   </body>
 </html>
