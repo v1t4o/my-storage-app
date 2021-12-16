@@ -17,10 +17,7 @@ describe 'Visitante abre a tela inicial' do
     visit root_path
 
     expect(page).to have_css('h3', text: 'Galpões cadastrados')
-<<<<<<< HEAD
-=======
     
->>>>>>> 9a44b163675293f2bf902c11476da9f339f7e44d
     expect(page).to have_css('td', text: 'Guarulhos')
     expect(page).to have_css('td', text: 'GRU')
     expect(page).to have_css('td', text: 'Porto Alegre')

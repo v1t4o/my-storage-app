@@ -9,7 +9,7 @@
   <tr>
   <% @warehouses.each do |warehouse| %>
     <tr>
-      <td><%= warehouse.name %></td>
+      <td><%= link_to(warehouse.name, warehouse_path(warehouse.id)) %></td>
       <td><%= warehouse.code %></td>
     <tr>
   <% end %>
