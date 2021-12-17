@@ -1,0 +1,15 @@
+<h1><%= @product_model.name %></h1>
+<div>
+  <dl>
+    <dt>Peso:</dt>
+    <dd><%= @product_model.weight %> gramas</dd>
+    <dt>Dimensões:</dt>
+    <dd><%= @product_model.dimensions %></dd>
+    <dt>Código SKU:</dt>
+    <dd><%= @product_model.sku %></dd>
+    <dt>Fornecedor:</dt>
+    <dd><%= @product_model.supplier.fantasy_name %></dd>
+  </dl>
+</div>
+
+<%= link_to 'Voltar', root_path %>

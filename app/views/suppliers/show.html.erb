@@ -1,5 +1,5 @@
 <h1><%= @supplier.fantasy_name %></h1>
-<h2><%= @supplier.legal_name %></h2>
+<h2>Razão Social: <%= @supplier.legal_name %></h2>
 <div>
   <dl>
     <dt>CNPJ:</dt>
@@ -12,3 +12,19 @@
     <dd><%= @supplier.phone %></dd>
   </dl>
 </div>
+
+<h2>Produtos deste fornecedor:</h2>
+<table>
+  <tr>
+    <th>Produto</th>
+    <th>SKU</th>
+  </tr>
+  <% @supplier.product_models.each do |product| %>
+    <tr> 
+      <td><%= product.name %></td>
+      <td><%= product.sku %></td>
+    </tr>
+  <% end %>
+</table>
+
+<%= link_to 'Voltar', suppliers_path %>

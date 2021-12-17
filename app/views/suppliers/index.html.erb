@@ -7,12 +7,12 @@
     <tr>
       <th>Nome Fantasia</th>
       <th>CNPJ</th>
-    <tr>
+    </tr>
     <% @suppliers.each do |supplier| %>
       <tr>
         <td><%= link_to(supplier.fantasy_name, supplier_path(supplier.id)) %></td>
         <td><%= supplier.eni %></td>
-      <tr>
+      </tr>
     <% end %>
   </table>
 <% end %>
