@@ -1,0 +1,6 @@
+<h1><%= @product_bundle.name %></h1>
+Código SKU: <%= @product_bundle.sku %>
+
+<% @product_bundle.product_models.each do |product| %>
+  <%= product.name %>
+<% end %>
