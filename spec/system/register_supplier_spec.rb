@@ -52,9 +52,9 @@ describe 'Usuário cadastra um fornecedor' do
 
     expect(page).not_to have_content 'Fornecedor registrado com sucesso'
     expect(page).to have_content 'Não foi possível gravar o fornecedor'
-    expect(page).to have_content "Fantasy name não pode ficar em branco"
-    expect(page).to have_content "Legal name não pode ficar em branco"
-    expect(page).to have_content "Eni não pode ficar em branco"
-    expect(page).to have_content "Email não pode ficar em branco"
+    expect(page).to have_content "Nome Fantasia não pode ficar em branco"
+    expect(page).to have_content "Razão Social não pode ficar em branco"
+    expect(page).to have_content "CNPJ não pode ficar em branco"
+    expect(page).to have_content "E-mail não pode ficar em branco"
   end
 end
