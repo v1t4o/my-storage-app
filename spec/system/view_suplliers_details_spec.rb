@@ -3,7 +3,7 @@ require 'rails_helper'
 describe 'Usuário vê os detalhes de um fornecedor' do
   it 'com sucesso' do
     supplier = Supplier.create(fantasy_name: 'Cerâmicas Geek', legal_name: 'Geek Comercio de Ceramicas LTDA',
-                               eni: '51905325000154', address: 'Avenida Spider Man, 3',
+                               eni: '32.451.879/0001-77', address: 'Avenida Spider Man, 3',
                                email: 'geekceramicas@gmail.com', phone: '31 3456-7890')
     visit root_path
     click_on 'Visualizar fornecedores'
@@ -18,7 +18,7 @@ describe 'Usuário vê os detalhes de um fornecedor' do
 
   it 'e vê os produtos do fornecedor' do
     supplier = Supplier.create(fantasy_name: 'Cerâmicas Geek', legal_name: 'Geek Comercio de Ceramicas LTDA',
-                               eni: '51905325000154', address: 'Avenida Spider Man, 3',
+                               eni: '32.451.879/0001-77', address: 'Avenida Spider Man, 3',
                                email: 'geekceramicas@gmail.com', phone: '31 3456-7890')
     ProductModel.create!(name: 'Caneca Star Wars', height: '14', width: '10', length: '8', weight: 300, sku: 'CANSW12032103', supplier: supplier)
     ProductModel.create!(name: 'Pelúcia Dumbo', height: '50', width: '40', length: '20', weight: 400, sku: 'PLD9012839210', supplier: supplier)

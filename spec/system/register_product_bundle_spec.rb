@@ -3,7 +3,7 @@ require 'rails_helper'
 describe 'Usuário registrar um kit' do
   
   it 'com sucesso' do
-    supplier = Supplier.create!(fantasy_name: 'Vinícola Miolo', legal_name: 'Miolo Fábrica de Bebidas LTDA', eni: '51905325000154', address: 'Avenida Cabernet, 100', email: 'contato@miolovinhos.com', phone: '71 1234-5678')
+    supplier = Supplier.create!(fantasy_name: 'Vinícola Miolo', legal_name: 'Miolo Fábrica de Bebidas LTDA', eni: '32.451.879/0001-77', address: 'Avenida Cabernet, 100', email: 'contato@miolovinhos.com', phone: '71 1234-5678')
 
     ProductModel.create!(name: 'Vinho Tinto Miolo', height: '30', width: '10', length: '10', weight: 800, sku: 'VINTI19208', supplier: supplier)
     ProductModel.create!(name: 'Vinho Rose Miolo', height: '30', width: '10', length: '10', weight: 800, sku: 'VINR048238', supplier: supplier)

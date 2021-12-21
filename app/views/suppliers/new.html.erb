@@ -1,5 +1,14 @@
 <h2>Novo fornecedor</h2>
 
+<% if @supplier.errors.any? %>
+  <span>Verifique os campos abaixo:</span>
+  <ul>
+    <% @supplier.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
+
 <%= form_with(model: @supplier) do |form| %>
   <div>
     <%= form.label :fantasy_name, 'Nome Fantasia' %>

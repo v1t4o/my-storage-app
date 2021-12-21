@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'Usuário cadastra um modelo de produto' do
   it 'com sucesso' do
-    Supplier.create(fantasy_name: 'Cerâmicas Geek', legal_name: 'Geek Comercio de Ceramicas LTDA')
+    Supplier.create(fantasy_name: 'Cerâmicas Geek', legal_name: 'Geek Comercio de Ceramicas LTDA', eni: '32.451.879/0001-77', email: 'contato@geek.com')
     Supplier.create(fantasy_name: 'Fábrica de Camisetas', legal_name: 'Camisas BR ME')
 
     visit root_path

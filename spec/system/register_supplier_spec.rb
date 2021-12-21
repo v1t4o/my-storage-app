@@ -35,4 +35,26 @@ describe 'Usuário cadastra um fornecedor' do
     expect(page).to have_content '(11) 4186-9866'
     expect(page).to have_content 'Fornecedor registrado com sucesso'
   end
+
+  it 'e alguns campos são obrigatórios' do
+    user = User.create!(email: 'joao@email.com', password: '12345678')
+    login_as(user, :scope => :user)
+
+    visit root_path
+
+    click_on 'Cadastrar novo fornecedor'
+
+    fill_in 'Nome Fantasia', with: ''
+    fill_in 'Razão Social', with: ''
+    fill_in 'CNPJ', with: ''
+    fill_in 'E-mail', with: ''
+    click_on 'Gravar'
+
+    expect(page).not_to have_content 'Fornecedor registrado com sucesso'
+    expect(page).to have_content 'Não foi possível gravar o fornecedor'
+    expect(page).to have_content "Fantasy name não pode ficar em branco"
+    expect(page).to have_content "Legal name não pode ficar em branco"
+    expect(page).to have_content "Eni não pode ficar em branco"
+    expect(page).to have_content "Email não pode ficar em branco"
+  end
 end

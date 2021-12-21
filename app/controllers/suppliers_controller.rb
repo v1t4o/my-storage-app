@@ -14,7 +14,11 @@ class SuppliersController < ApplicationController
   def create
     supplier_params = params.require(:supplier).permit(:fantasy_name, :legal_name, :eni, :address, :email, :phone)
     @supplier = Supplier.new(supplier_params)
-    @supplier.save()
-    redirect_to @supplier, notice: 'Fornecedor registrado com sucesso'
+    if @supplier.save()
+      redirect_to @supplier, notice: 'Fornecedor registrado com sucesso'
+    else
+      flash[:alert] = 'Não foi possível gravar o fornecedor'
+      render 'new'
+    end
   end
 end
