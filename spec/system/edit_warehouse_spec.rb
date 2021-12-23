@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'Usuário edita galpão' do
-  it 'através de um link da listagem de galpões' do
+  it 'através de um link da página do galpão' do
     Warehouse.create(name: 'Maceió', code: 'MCZ', description: 'Ótimo galpão numa linda cidade',
                      address: 'Av Fernandes Lima', city: 'Maceió', state: 'AL',
                      postal_code: '57050-000', total_area: 10000, useful_area: 8000)

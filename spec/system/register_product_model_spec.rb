@@ -11,7 +11,7 @@ describe 'Usuário cadastra um modelo de produto' do
     fill_in 'Peso', with: 300
     fill_in 'Altura', with: '12'
     fill_in 'Largura', with: '8'
-    fill_in 'Produndidade', with: '14'
+    fill_in 'Profundidade', with: '14'
     select 'Cerâmicas Geek', from: 'Fornecedor'
     click_on 'Gravar'
 

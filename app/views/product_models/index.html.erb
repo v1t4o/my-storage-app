@@ -7,7 +7,7 @@
   </tr>
   <% @product_models.each do |product_model| %>
     <tr>
-      <td><%= product_model.name %></td>
+      <td><%= link_to product_model.name, product_model %></td>
       <td><%= product_model.supplier.fantasy_name %></td>
     <tr>
   <% end %>
