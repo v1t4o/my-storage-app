@@ -17,6 +17,7 @@
         <%= link_to 'Cadastrar novo fornecedor', new_supplier_path %>
         <%= link_to 'Visualizar fornecedores', suppliers_path %>
         <%= link_to 'Cadastrar modelo de produto', new_product_model_path %>
+        <%= link_to 'Visualizar modelos de produtos', product_models_path %>
         <%= link_to 'Criar novo kit de produtos', new_product_bundle_path %>
         <% if user_signed_in? %>
           <span>Olá <%= current_user.email %></span>
