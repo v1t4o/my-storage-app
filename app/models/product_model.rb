@@ -1,12 +1,12 @@
 class ProductModel < ApplicationRecord
   belongs_to :supplier
-  #belongs_to :category
+  belongs_to :category
   has_many :product_bundle_items
   has_many :product_bundles, through: :product_bundle_items
   
   before_validation :set_sku
 
-  validates :name, :weight, :height, :length, :width, :supplier_id, presence: true
+  validates :name, :weight, :height, :length, :width, :supplier_id, :category_id, presence: true
   validates :sku, uniqueness: true
   validates :weight, :height, :length, :width, exclusion: {in: [0] }
   

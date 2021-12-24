@@ -20,6 +20,7 @@
         <%= link_to 'Visualizar modelos de produtos', product_models_path %>
         <%= link_to 'Criar novo kit de produtos', new_product_bundle_path %>
         <%= link_to 'Cadastrar categoria', new_category_path %>
+        <%= link_to 'Visualizar categorias', categories_path %>
         <% if user_signed_in? %>
           <span>Olá <%= current_user.email %></span>
           <%= link_to 'Cadastrar novo galpão', new_warehouse_path %>
