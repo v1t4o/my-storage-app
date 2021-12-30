@@ -1,6 +1,16 @@
 <h1><%= @product_bundle.name %></h1>
 Código SKU: <%= @product_bundle.sku %>
+Peso: <%= @product_bundle.total_weight %>
 
+<table>
+  <tr>
+    <td>Nome</td>
+    <td>Fornecedor</td>
+  </tr>
 <% @product_bundle.product_models.each do |product| %>
-  <%= product.name %>
+  <tr>
+    <td><%= product.name %></td>
+    <td><%= product.supplier.fantasy_name %></td>
+  </tr>
 <% end %>
+</table>
