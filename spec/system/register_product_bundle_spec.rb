@@ -1,8 +1,20 @@
 require 'rails_helper'
 
 describe 'Usuário registrar um kit' do
-  
+  it 'visitante não vê no menu' do
+    visit root_path
+    expect(page).not_to have_link('Cadastrar kit de produto')
+  end
+
+  it 'visitante não acessa diretamente o formulário de cadastro de kit de produto' do
+    visit new_product_bundle_path
+    expect(current_path).to eq new_user_session_path
+  end
+
   it 'com sucesso' do
+    user = User.create!(email: 'joao@email.com', password: '12345678')
+    login_as(user, :scope => :user)
+
     supplier = Supplier.create!(fantasy_name: 'Vinícola Miolo', legal_name: 'Miolo Fábrica de Bebidas LTDA', eni: '32.451.879/0001-77', address: 'Avenida Cabernet, 100', email: 'contato@miolovinhos.com', phone: '71 1234-5678')
     category = Category.create!(name: 'Bebidas')
 

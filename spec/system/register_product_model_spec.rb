@@ -1,7 +1,20 @@
 require 'rails_helper'
 
 describe 'Usuário cadastra um modelo de produto' do
+  it 'visitante não vê no menu' do
+    visit root_path
+    expect(page).not_to have_link('Cadastrar novo modelo de produto')
+  end
+
+  it 'visitante não acessa diretamente o formulário de cadastro de modelo de produto' do
+    visit new_supplier_path
+    expect(current_path).to eq new_user_session_path
+  end
+
   it 'com sucesso' do
+    user = User.create!(email: 'joao@email.com', password: '12345678')
+    login_as(user, :scope => :user)
+
     Supplier.create(fantasy_name: 'Cerâmicas Geek', legal_name: 'Geek Comercio de Ceramicas LTDA', eni: '32.451.879/0001-77', email: 'contato@geek.com')
     Supplier.create(fantasy_name: 'Fábrica de Camisetas', legal_name: 'Camisas BR ME')
     Category.create!(name: 'Utensílios')
@@ -25,6 +38,9 @@ describe 'Usuário cadastra um modelo de produto' do
   end
 
   it 'e não vê os produtos de outro fornecedor' do
+    user = User.create!(email: 'joao@email.com', password: '12345678')
+    login_as(user, :scope => :user)
+
     supplier = Supplier.create!(fantasy_name: 'Fábrica Geek', legal_name: 'Geek Comercio de Ceramicas LTDA', eni: '32.451.879/0001-77', address: 'Av Geek', email: 'contato@geek.com', phone: '51 3456-7890')
     other_supplier = Supplier.create!(fantasy_name: 'Canecas e Copos', legal_name: 'A Fantastica Fabrica de Canecas LTDA', eni: '45.896.325/0001-88', address: 'Av das Canecas', email: 'contato@canecas.com', phone: '11 4578-9986')
     category = Category.create!(name: 'Utensílios')

@@ -1,4 +1,6 @@
 class ProductBundlesController < ApplicationController
+  before_action :authenticate_user!, only: [:new, :create]
+
   def index
     @product_bundles = ProductBundle.all
   end

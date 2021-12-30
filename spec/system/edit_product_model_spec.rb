@@ -2,6 +2,9 @@ require 'rails_helper'
 
 describe 'Usuário edita um modelo de produto' do
   it 'através de um link na página do produto' do
+    user = User.create!(email: 'joao@email.com', password: '12345678')
+    login_as(user, :scope => :user)
+    
     supplier = Supplier.create(fantasy_name: 'Cerâmicas Geek', legal_name: 'Geek Comercio de Ceramicas LTDA', eni: '32.451.879/0001-77', email: 'contato@geek.com')
     other_supplier = Supplier.create!(fantasy_name: 'Canecas e Copos', legal_name: 'A Fantastica Fabrica de Canecas LTDA', eni: '45.896.325/0001-88', address: 'Av das Canecas', email: 'contato@canecas.com', phone: '11 4578-9986')
     category = Category.create!(name: 'Utensílios')
@@ -27,6 +30,9 @@ describe 'Usuário edita um modelo de produto' do
   end
 
   it 'com sucessso' do
+    user = User.create!(email: 'joao@email.com', password: '12345678')
+    login_as(user, :scope => :user)
+    
     supplier = Supplier.create!(fantasy_name: 'Fábrica Geek', legal_name: 'Geek Comercio de Ceramicas LTDA', eni: '32.451.879/0001-77', address: 'Av Geek', email: 'contato@geek.com', phone: '51 3456-7890')
     other_supplier = Supplier.create!(fantasy_name: 'Canecas e Copos', legal_name: 'A Fantastica Fabrica de Canecas LTDA', eni: '45.896.325/0001-88', address: 'Av das Canecas', email: 'contato@canecas.com', phone: '11 4578-9986')
     category = Category.create!(name: 'Utensílios')

@@ -2,6 +2,9 @@ require 'rails_helper'
 
 describe 'Usuário edita galpão' do
   it 'através de um link da página do galpão' do
+    user = User.create!(email: 'joao@email.com', password: '12345678')
+    login_as(user, :scope => :user)
+
     Warehouse.create(name: 'Maceió', code: 'MCZ', description: 'Ótimo galpão numa linda cidade',
                      address: 'Av Fernandes Lima', city: 'Maceió', state: 'AL',
                      postal_code: '57050-000', total_area: 10000, useful_area: 8000)
@@ -25,6 +28,9 @@ describe 'Usuário edita galpão' do
   end
 
   it 'com sucesso' do
+    user = User.create!(email: 'joao@email.com', password: '12345678')
+    login_as(user, :scope => :user)
+    
     Warehouse.create(name: 'Maceió', code: 'MCZ', description: 'Ótimo galpão numa linda cidade',
                      address: 'Av Fernandes Lima', city: 'Maceió', state: 'AL',
                      postal_code: '57050-000', total_area: 10000, useful_area: 8000)

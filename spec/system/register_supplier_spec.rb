@@ -1,7 +1,20 @@
 require 'rails_helper'
 
 describe 'Usuário cadastra um fornecedor' do
+  it 'visitante não vê no menu' do
+    visit root_path
+    expect(page).not_to have_link('Cadastrar novo fornecedor')
+  end
+
+  it 'visitante não acessa diretamente o formulário de cadastro de fornecedor' do
+    visit new_supplier_path
+    expect(current_path).to eq new_user_session_path
+  end
+
   it 'através de um link na tela inicial' do
+    user = User.create!(email: 'joao@email.com', password: '12345678')
+    login_as(user, :scope => :user)
+
     visit root_path
     click_on 'Cadastrar novo fornecedor'
 
@@ -16,6 +29,9 @@ describe 'Usuário cadastra um fornecedor' do
   end
 
   it 'com sucesso' do
+    user = User.create!(email: 'joao@email.com', password: '12345678')
+    login_as(user, :scope => :user)
+
     visit root_path
     click_on 'Cadastrar novo fornecedor'
 
