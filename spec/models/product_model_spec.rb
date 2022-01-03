@@ -97,4 +97,18 @@ RSpec.describe ProductModel, type: :model do
     expect(result).to eq false
   end
 
+  it 'código sku é gerado automaticamente' do
+    supplier = Supplier.create!(fantasy_name: 'Fábrica Geek', legal_name: 'Geek Comercio de Ceramicas LTDA', eni: '32.451.879/0001-77', address: 'Av Geek', email: 'contato@geek.com', phone: '51 3456-7890')
+
+    product_model = ProductModel.new(name: 'Pelúcia Dumbo', height: '30', width: '10', length: '10', weight: 400, supplier: supplier)
+    
+    if product_model.sku != ''
+      result = true
+    else
+      result = false
+    end
+
+    expect(result).to eq true
+  end
+
 end

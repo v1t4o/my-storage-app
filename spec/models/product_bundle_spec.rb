@@ -13,4 +13,21 @@ RSpec.describe ProductBundle, type: :model do
 
     expect(result).to eq false
   end
+
+  it 'código sku é gerado automaticamente' do
+    supplier = Supplier.create!(fantasy_name: 'Fábrica Geek', legal_name: 'Geek Comercio de Ceramicas LTDA', eni: '32.451.879/0001-77', address: 'Av Geek', email: 'contato@geek.com', phone: '51 3456-7890')
+    category = Category.create!(name: 'Bebidas')
+
+    product_model = ProductModel.create!(name: 'Vinho Tinto', height: '50', width: '40', length: '20', weight: 400, supplier: supplier, category: category)
+
+    product_bundle = ProductBundle.new(name: 'Kit de Vinho 2022', product_model_ids: [product_model.id])
+    
+    if product_bundle.sku != ''
+      result = true
+    else
+      result = false
+    end
+
+    expect(result).to eq true
+  end
 end
