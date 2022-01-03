@@ -2,7 +2,11 @@ class ProductModelsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update]
 
   def index
-    @product_models = ProductModel.all
+    if !params[:term]
+      @product_models = ProductModel.all
+    else
+      @product_models = ProductModel.joins(:supplier).where('fantasy_name like ?', "%#{params[:term]}%")
+    end
   end
   
   def show
