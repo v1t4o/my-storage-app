@@ -12,12 +12,10 @@ describe 'Usuário cadastra um galpão' do
   end
 
   it 'através de um link na tela inicial' do
-
     user = User.create!(email: 'joao@email.com', password: '12345678')
+
     login_as(user, :scope => :user)
-
     visit root_path
-
     click_on 'Cadastrar novo galpão'
 
     expect(page).to have_css('h2', text: 'Novo Galpão')
@@ -35,12 +33,10 @@ describe 'Usuário cadastra um galpão' do
 
   it 'com sucesso' do
     user = User.create!(email: 'joao@email.com', password: '12345678')
+
     login_as(user, :scope => :user)
-
     visit root_path
-
     click_on 'Cadastrar novo galpão'
-
     fill_in 'Nome', with: 'Juiz de Fora'
     fill_in 'Código', with: 'JDF'
     fill_in 'Endereço', with: 'Av Rio Branco'
@@ -69,12 +65,10 @@ describe 'Usuário cadastra um galpão' do
 
   it 'e todos campos são obrigatórios' do
     user = User.create!(email: 'joao@email.com', password: '12345678')
+
     login_as(user, :scope => :user)
-
     visit root_path
-
     click_on 'Cadastrar novo galpão'
-
     fill_in 'Nome', with: ''
     fill_in 'Código', with: ''
     fill_in 'CEP', with: ''

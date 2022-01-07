@@ -34,6 +34,9 @@ class ProductModelsController < ApplicationController
     @product_model = ProductModel.find(params[:id])
     if @product_model.update(product_model_params)
       redirect_to @product_model, notice: 'Modelo de produto alterado com sucesso'
+    else
+      flash[:alert] = 'Não foi possível alterar modelo de produto'
+      render 'edit'
     end
   end
 end

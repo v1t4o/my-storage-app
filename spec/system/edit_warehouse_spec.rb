@@ -3,12 +3,11 @@ require 'rails_helper'
 describe 'Usuário edita galpão' do
   it 'através de um link da página do galpão' do
     user = User.create!(email: 'joao@email.com', password: '12345678')
-    login_as(user, :scope => :user)
-
     Warehouse.create(name: 'Maceió', code: 'MCZ', description: 'Ótimo galpão numa linda cidade',
                      address: 'Av Fernandes Lima', city: 'Maceió', state: 'AL',
                      postal_code: '57050-000', total_area: 10000, useful_area: 8000)
 
+    login_as(user, :scope => :user)
     visit root_path
     click_on 'Maceió'
     click_on 'Editar'
@@ -28,17 +27,15 @@ describe 'Usuário edita galpão' do
   end
 
   it 'com sucesso' do
-    user = User.create!(email: 'joao@email.com', password: '12345678')
-    login_as(user, :scope => :user)
-    
+    user = User.create!(email: 'joao@email.com', password: '12345678')    
     Warehouse.create(name: 'Maceió', code: 'MCZ', description: 'Ótimo galpão numa linda cidade',
                      address: 'Av Fernandes Lima', city: 'Maceió', state: 'AL',
                      postal_code: '57050-000', total_area: 10000, useful_area: 8000)
 
+    login_as(user, :scope => :user)
     visit root_path
     click_on 'Maceió'
     click_on 'Editar'
-
     fill_in 'Nome', with: 'Maceió'
     fill_in 'Código', with: 'MCZ'
     fill_in 'Endereço', with: 'Av Rio Branco'
@@ -67,12 +64,10 @@ describe 'Usuário edita galpão' do
 
   it 'e todos campos são obrigatórios' do
     user = User.create!(email: 'joao@email.com', password: '12345678')
+    
     login_as(user, :scope => :user)
-
     visit root_path
-
     click_on 'Cadastrar novo galpão'
-
     fill_in 'Nome', with: ''
     fill_in 'Código', with: ''
     fill_in 'CEP', with: ''

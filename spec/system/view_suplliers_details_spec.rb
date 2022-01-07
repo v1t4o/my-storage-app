@@ -5,6 +5,7 @@ describe 'Usuário vê os detalhes de um fornecedor' do
     supplier = Supplier.create(fantasy_name: 'Cerâmicas Geek', legal_name: 'Geek Comercio de Ceramicas LTDA',
                                eni: '32.451.879/0001-77', address: 'Avenida Spider Man, 3',
                                email: 'geekceramicas@gmail.com', phone: '31 3456-7890')
+    
     visit root_path
     click_on 'Visualizar fornecedores'
     click_on 'Cerâmicas Geek'

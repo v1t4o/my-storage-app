@@ -13,8 +13,8 @@ describe 'Usuário cadastra categoria de produto' do
 
   it 'através de um link na tela inicial' do
     user = User.create!(email: 'joao@email.com', password: '12345678')
-    login_as(user, :scope => :user)
 
+    login_as(user, :scope => :user)
     visit root_path
     click_on 'Cadastrar categoria'
 
@@ -25,11 +25,10 @@ describe 'Usuário cadastra categoria de produto' do
 
   it 'com sucesso' do
     user = User.create!(email: 'joao@email.com', password: '12345678')
-    login_as(user, :scope => :user)
 
+    login_as(user, :scope => :user)
     visit root_path
     click_on 'Cadastrar categoria'
-
     fill_in 'Nome', with: 'Eletrônicos'
     click_on 'Gravar'
 
@@ -39,14 +38,11 @@ describe 'Usuário cadastra categoria de produto' do
 
   it 'e todos campos são obrigatórios' do
     user = User.create!(email: 'joao@email.com', password: '12345678')
+
     login_as(user, :scope => :user)
-
     visit root_path
-
     click_on 'Cadastrar categoria'
-
     fill_in 'Nome', with: ''
-
     click_on 'Gravar'
 
     expect(page).not_to have_content 'Categoria cadastrada com sucesso'

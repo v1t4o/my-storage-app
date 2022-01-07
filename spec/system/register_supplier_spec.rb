@@ -13,8 +13,8 @@ describe 'Usuário cadastra um fornecedor' do
 
   it 'através de um link na tela inicial' do
     user = User.create!(email: 'joao@email.com', password: '12345678')
-    login_as(user, :scope => :user)
 
+    login_as(user, :scope => :user)
     visit root_path
     click_on 'Cadastrar novo fornecedor'
 
@@ -25,16 +25,14 @@ describe 'Usuário cadastra um fornecedor' do
     expect(page).to have_field 'Endereço'
     expect(page).to have_field 'E-mail'
     expect(page).to have_field 'Telefone'
-    
   end
 
   it 'com sucesso' do
     user = User.create!(email: 'joao@email.com', password: '12345678')
-    login_as(user, :scope => :user)
 
+    login_as(user, :scope => :user)
     visit root_path
     click_on 'Cadastrar novo fornecedor'
-
     fill_in 'Nome Fantasia', with: 'Storage Box'
     fill_in 'Razão Social', with: 'Storage Box Armazenamento LTDA'
     fill_in 'CNPJ', with: '32.451.879/0001-77'
@@ -54,12 +52,10 @@ describe 'Usuário cadastra um fornecedor' do
 
   it 'e alguns campos são obrigatórios' do
     user = User.create!(email: 'joao@email.com', password: '12345678')
+
     login_as(user, :scope => :user)
-
     visit root_path
-
     click_on 'Cadastrar novo fornecedor'
-
     fill_in 'Nome Fantasia', with: ''
     fill_in 'Razão Social', with: ''
     fill_in 'CNPJ', with: ''

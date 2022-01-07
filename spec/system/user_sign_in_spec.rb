@@ -3,6 +3,7 @@ require 'rails_helper'
 describe 'Usuário faz login' do
   it 'com sucesso' do
     User.create!(email: 'joao@email.com', password: '12345678')
+    
     visit root_path
     click_on 'Entrar'
     within('form#new_user') do
@@ -10,6 +11,7 @@ describe 'Usuário faz login' do
       fill_in 'Senha', with: '12345678'
       click_on 'Entrar'
     end
+
     expect(current_path).to eq root_path    
     expect(page).to have_content 'Olá joao@email.com'
     expect(page).to have_content 'Login efetuado com sucesso'
@@ -34,6 +36,5 @@ describe 'Usuário faz login' do
     expect(page).to have_link 'Entrar'
     expect(page).not_to have_link 'Sair'
     expect(page).not_to have_content 'Olá joao@email.com'
-    
   end
 end

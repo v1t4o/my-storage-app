@@ -25,7 +25,6 @@ describe 'Visitante abre a tela inicial' do
     visit root_path
 
     expect(page).to have_css('h3', text: 'Galpões cadastrados')
-    
     expect(page).to have_css('td', text: 'Guarulhos')
     expect(page).to have_css('td', text: 'GRU')
     expect(page).to have_css('td', text: 'Porto Alegre')

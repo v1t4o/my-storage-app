@@ -7,11 +7,13 @@
     <tr>
       <th>Nome Fantasia</th>
       <th>CNPJ</th>
+      <th>Ações</th>
     </tr>
     <% @suppliers.each do |supplier| %>
       <tr>
         <td><%= link_to(supplier.fantasy_name, supplier_path(supplier.id)) %></td>
         <td><%= supplier.eni %></td>
+        <td><%= link_to 'Editar', edit_supplier_path(supplier.id), id: "edit-#{supplier.id}" %></td>
       </tr>
     <% end %>
   </table>
