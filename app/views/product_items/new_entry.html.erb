@@ -1,0 +1,19 @@
+<h1>Registrar a entrada de lote</h1>
+
+<%= form_with(url: product_items_entry_path) do |f| %>
+  <div>
+    <%= f.label :quantity, 'Quantidade' %>
+    <%= f.number_field :quantity %>
+  </div>
+  <div>
+    <%= f.label :warehouse_id, 'Galpão Destino' %>
+    <%= f.select :warehouse_id, options_from_collection_for_select(@warehouses, :id, :code) %>
+  </div>
+  <div>
+    <%= f.label :product_model_id, 'Produto' %>
+    <%= f.select :product_model_id, options_from_collection_for_select(@product_models, :id, :name) %>
+  </div>
+  <div>
+    <%= f.submit 'Confirmar' %>
+  </div>
+<% end %>

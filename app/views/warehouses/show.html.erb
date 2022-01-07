@@ -16,5 +16,15 @@
   </dl>
 </div>
 
+<h2>Estoque</h2>
+
+<% @items = @warehouse.product_items.group(:product_model).count %>
+<% @items.each_pair do |product_model, quantity| %>
+  <div id="product-<%= product_model.id %>">
+    <%= product_model.name %>
+    Quantidade: <%= quantity %>
+  </div>
+<% end %>
+
 <%= link_to 'Voltar', root_path %>
 <%= link_to 'Editar', edit_warehouse_path(@warehouse) %>

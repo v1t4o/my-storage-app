@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_24_023638) do
+ActiveRecord::Schema.define(version: 2022_01_07_134113) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -33,6 +33,15 @@ ActiveRecord::Schema.define(version: 2021_12_24_023638) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "total_weight"
+  end
+
+  create_table "product_items", force: :cascade do |t|
+    t.integer "warehouse_id", null: false
+    t.integer "product_model_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["product_model_id"], name: "index_product_items_on_product_model_id"
+    t.index ["warehouse_id"], name: "index_product_items_on_warehouse_id"
   end
 
   create_table "product_models", force: :cascade do |t|
@@ -89,6 +98,8 @@ ActiveRecord::Schema.define(version: 2021_12_24_023638) do
 
   add_foreign_key "product_bundle_items", "product_bundles"
   add_foreign_key "product_bundle_items", "product_models"
+  add_foreign_key "product_items", "product_models"
+  add_foreign_key "product_items", "warehouses"
   add_foreign_key "product_models", "categories"
   add_foreign_key "product_models", "suppliers"
 end
