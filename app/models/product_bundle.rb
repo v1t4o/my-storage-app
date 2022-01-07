@@ -5,10 +5,10 @@ class ProductBundle < ApplicationRecord
   validates :name, presence: true
   validates :sku, uniqueness: true
 
-  before_validation :set_sku
+  before_create :generate_sku
 
-  def set_sku
-    self.sku = 'K' + SecureRandom.hex(20).upcase!
-    set_sku if ProductBundle.exists?(sku: sku)
+  def generate_sku
+    self.sku = "K#{SecureRandom.alphanumeric(20).upcase!}"
+    generate_sku if ProductBundle.exists?(sku: sku)
   end
 end

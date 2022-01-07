@@ -33,7 +33,6 @@ class ProductBundlesController < ApplicationController
     product_bundle.product_models.each do |product|
       total += product.weight
     end
-    attribute = {total_weight: total}
-    product_bundle.update(attribute)
+    product_bundle.update(total_weight: total)
   end
 end

@@ -27,7 +27,10 @@ describe 'Usuário registrar um kit' do
     check 'Vinho Branco Miolo'
     click_on 'Gravar'
 
+    p = ProductBundle.last
     expect(page).to have_content 'Kit Degustação Miolo'
+    expect(page).to have_content "Código SKU: #{p.sku}"
+    expect(page).to have_content "Peso: #{p.total_weight}"
     expect(page).to have_content 'Vinho Tinto Miolo'
     expect(page).to have_content 'Vinho Branco Miolo'
     expect(page).not_to have_content 'Vinho Rose Miolo'
