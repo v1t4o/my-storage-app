@@ -4,7 +4,7 @@ class ProductModel < ApplicationRecord
   has_many :product_bundle_items
   has_many :product_bundles, through: :product_bundle_items
   
-  before_validation :set_sku
+  before_create :generate_sku
 
   validates :name, :weight, :height, :length, :width, :supplier_id, :category_id, presence: true
   validates :sku, uniqueness: true
@@ -16,8 +16,8 @@ class ProductModel < ApplicationRecord
 
   private
 
-  def set_sku
-    self.sku = SecureRandom.hex(20).upcase!
-    set_sku if ProductModel.exists?(sku: sku)
+  def generate_sku
+    self.sku = SecureRandom.alphanumeric(20).upcase!
+    generate_sku if ProductModel.exists?(sku: sku)
   end
 end

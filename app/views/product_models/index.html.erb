@@ -9,11 +9,13 @@
 <table>
   <tr>
     <th>Nome</th>
+    <th>Código SKU</th>
     <th>Fornecedor</th>
   </tr>
   <% @product_models.each do |product_model| %>
     <tr>
       <td><%= link_to product_model.name, product_model %></td>
+      <td><%= product_model.sku %></td>
       <td><%= product_model.supplier.fantasy_name %></td>
     <tr>
   <% end %>
