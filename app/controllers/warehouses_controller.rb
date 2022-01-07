@@ -48,8 +48,10 @@ class WarehousesController < ApplicationController
     warehouse = Warehouse.find(warehouse_id)
     product_model = ProductModel.find(product_model_id)
 
-    quantity.times do
-      ProductItem.create(warehouse: warehouse, product_model: product_model)
+    ProductItem.transaction do
+      quantity.times do
+        ProductItem.create!(warehouse: warehouse, product_model: product_model)
+      end
     end
 
     redirect_to warehouse
