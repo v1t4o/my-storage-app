@@ -13,7 +13,9 @@ class ProductEntry
 
     ProductItem.transaction do
       quantity.times do
-        ProductItem.create!(warehouse: warehouse, product_model: product_model)
+        #ProductItem.create!(warehouse: warehouse, product_model: product_model)
+        #warehouse.product_items.create(product_model: product_model)
+        product_model.product_items.create(warehouse: warehouse)
       end
     end
   end
