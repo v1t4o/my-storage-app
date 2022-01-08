@@ -10,4 +10,8 @@ Rails.application.routes.draw do
   resources :categories, only: [:index, :show, :new, :create]
   get 'product_items/entry', to: 'product_items#new_entry'
   post 'product_items/entry', to: 'product_items#process_entry'
+
+  namespace :api, constraints: { format: 'json' } do
+    resources :warehouses, only: [:index]
+  end
 end
