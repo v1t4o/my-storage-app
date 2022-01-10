@@ -36,4 +36,28 @@ describe 'Visitante vê um galpão' do
 
     expect(current_path).to eq root_path
   end
+
+  it 'e consegue pesquisar um galpão pelo nome' do
+    Warehouse.create(name: 'Maceió', code: 'MCZ', description: 'Ótimo galpão numa linda cidade',
+                     address: 'Av Fernandes Lima', city: 'Maceió', state: 'AL',
+                     postal_code: '57050-000',
+                     total_area: 10000, useful_area: 8000)
+    Warehouse.create(name: 'Guarulhos', code: 'GRU', description: 'Ótimo galpão numa linda cidade',
+                     address: 'Av Fernandes Lima', city: 'Maceió', state: 'AL',
+                     postal_code: '57050-000',
+                     total_area: 10000, useful_area: 8000)
+    Warehouse.create(name: 'Dutra', code: 'GUA', description: 'Ótimo galpão numa linda cidade',
+                     address: 'Av Fernandes Lima', city: 'Guarulhos', state: 'AL',
+                     postal_code: '57050-000',
+                     total_area: 10000, useful_area: 8000)
+
+    visit root_path
+    fill_in 'Busca:', with: 'Guarulhos'
+    click_on 'Filtrar'
+
+    expect(current_path).to eq root_path
+    expect(page).to have_content('Guarulhos')
+    expect(page).to have_content('Dutra')
+    expect(page).not_to have_content('Maceió')
+  end
 end
