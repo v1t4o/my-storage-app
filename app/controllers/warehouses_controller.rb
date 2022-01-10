@@ -8,7 +8,7 @@ class WarehousesController < ApplicationController
   def create
     warehouse_params = params.require(:warehouse).permit(:name, :code, :address,
                                                          :state, :city, :postal_code, :description,
-                                                         :useful_area, :total_area)
+                                                         :useful_area, :total_area, category_ids: [])
     @warehouse = Warehouse.new(warehouse_params)
     if @warehouse.save()
       redirect_to warehouse_path(@warehouse.id), notice: 'Galpão registrado com sucesso'
@@ -31,7 +31,7 @@ class WarehousesController < ApplicationController
     @warehouse = Warehouse.find(params[:id])
     warehouse_params = params.require(:warehouse).permit(:name, :code, :address,
                                                          :state, :city, :postal_code, :description,
-                                                         :useful_area, :total_area)
+                                                         :useful_area, :total_area, category_ids: [])
     if @warehouse.update(warehouse_params)
       redirect_to warehouse_path(@warehouse.id), notice: 'Galpão alterado com sucesso'
     else

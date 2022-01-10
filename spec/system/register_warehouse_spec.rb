@@ -13,6 +13,9 @@ describe 'Usuário cadastra um galpão' do
 
   it 'através de um link na tela inicial' do
     user = User.create!(email: 'joao@email.com', password: '12345678')
+    Category.create!(name: 'Bebidas')
+    Category.create!(name: 'Utensílios')
+    Category.create!(name: 'Alimentos')
 
     login_as(user, :scope => :user)
     visit root_path
@@ -28,11 +31,17 @@ describe 'Usuário cadastra um galpão' do
     expect(page).to have_field 'Descrição'
     expect(page).to have_field 'Área Total'
     expect(page).to have_field 'Área Útil'
+    expect(page).to have_content 'Bebidas'
+    expect(page).to have_content 'Utensílios'
+    expect(page).to have_content 'Alimentos'
     expect(page).to have_button 'Gravar'
   end
 
   it 'com sucesso' do
     user = User.create!(email: 'joao@email.com', password: '12345678')
+    Category.create!(name: 'Bebidas')
+    Category.create!(name: 'Utensílios')
+    Category.create!(name: 'Alimentos')
 
     login_as(user, :scope => :user)
     visit root_path
@@ -46,6 +55,8 @@ describe 'Usuário cadastra um galpão' do
     fill_in 'Descrição', with: 'Um galpão mineiro com o pé no Rio'
     fill_in 'Área Total', with: '5000'
     fill_in 'Área Útil', with: '3000'
+    check 'Bebidas'
+    check 'Alimentos'
     click_on 'Gravar'
 
     expect(page).to have_css('h1', text: 'Juiz de Fora')
@@ -60,6 +71,9 @@ describe 'Usuário cadastra um galpão' do
     expect(page).to have_css('dd', text: '5000 m2')
     expect(page).to have_css('dt', text: 'Área Útil:')
     expect(page).to have_css('dd', text: '3000 m2')
+    expect(page).to have_css('dt', text: 'Categorias:')
+    expect(page).to have_css('dd', text: 'Bebidas')
+    expect(page).to have_css('dd', text: 'Alimentos')
     expect(page).to have_content 'Galpão registrado com sucesso'
   end
 

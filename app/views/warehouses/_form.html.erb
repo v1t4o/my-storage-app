@@ -44,5 +44,9 @@
     <%= form.label :useful_area, 'Área Útil' %>
     <%= form.text_field(:useful_area) %>
   </div>
+  <div>
+    <span>Escolha os categorias desse galpão</span>
+    <%= form.collection_check_boxes :category_ids, Category.all, :id, :name %>
+  </div>
   <%= form.submit 'Gravar' %>
 <% end %>

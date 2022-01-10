@@ -13,6 +13,10 @@
     <dd><%= @warehouse.total_area %> m2</dd>
     <dt>Área Útil:</dt>
     <dd><%= @warehouse.useful_area %> m2</dd>
+    <dt>Categorias:</dt>
+    <% @warehouse.categories.each do |category| %>
+      <dd><%= category.name %></dd>
+    <% end %>
   </dl>
 </div>
 
