@@ -48,12 +48,12 @@ describe 'Warehouse API' do
       expect(parsed_response["description"]).to eq 'Ótimo galpão numa linda cidade'
       expect(parsed_response["city"]).to eq 'São Paulo'
       expect(parsed_response["state"]).to eq 'SP'
+      expect(parsed_response["address"]).to eq 'Av Fernandes Lima'
       expect(parsed_response["postal_code"]).to eq '57050-021'
       expect(parsed_response["total_area"]).to eq 10000
       expect(parsed_response["useful_area"]).to eq 8000
       expect(parsed_response.keys).not_to include 'created_at'
       expect(parsed_response.keys).not_to include 'updated_at'
-      expect(parsed_response.keys).not_to include 'address'
     end
 
     it 'galpão não existe' do
