@@ -12,5 +12,20 @@
   </dl>
 </div>
 
+<h2>Estoques</h2>
+<table>
+  <tr>
+    <th>Galpão</th>
+    <th>Quantidade</th>
+  </tr>
+  <% @items = @product_model.product_items.group(:warehouse).count %>
+  <% @items.each_pair do |warehouse, quantity| %>
+    <tr id="warehouse-<%= warehouse.id %>">
+      <td><%= warehouse.name %></td>
+      <td><%= quantity %></td>
+    </tr>
+  <% end %>
+</table>
+
 <%= link_to 'Voltar', root_path %>
 <%= link_to 'Editar', edit_product_model_path(@product_model) %>
