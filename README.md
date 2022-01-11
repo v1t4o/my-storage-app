@@ -54,7 +54,6 @@ POST /api/v1/warehouses
 
 ```
 {
-  "id":1,
   "name":"Juiz de Fora",
   "code":"JDF",
   "description":"Ótimo Galpão",
