@@ -47,7 +47,9 @@ describe 'Supplier API' do
     it 'fornecedor não existe' do
       get '/api/v1/suppliers/777'
 
-      expect(response.status).to eq 404
-    end
+      expect(response.content_type).to include('application/json')
+      parsed_response = JSON.parse(response.body)
+      expect(parsed_response["error"]).to eq 'Objeto não encontrado'
+      expect(response.status).to eq 404    end
   end
 end

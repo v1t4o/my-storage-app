@@ -5,12 +5,8 @@ class Api::V1::WarehousesController < Api::V1::ApiController
   end
 
   def show
-    begin
-      warehouse = Warehouse.find(params[:id])
-      render json: warehouse.as_json(except: [:created_at, :updated_at]), status: 200
-    rescue ActiveRecord::RecordNotFound
-      render json: '{}', status: 404
-    end
+    @warehouse = Warehouse.find(params[:id])
+    #render json: warehouse.as_json(except: [:created_at, :updated_at]), status: 200
   end
 
   def create

@@ -29,7 +29,7 @@ describe 'ProductModel API' do
   end
 
   context 'GET /api/v1/product_models/:id' do
-    it 'com sucesso' do
+    it 'com sucesso - 200' do
       supplier = Supplier.create!(fantasy_name: 'Fábrica Geek', legal_name: 'Geek Comercio de Ceramicas LTDA', eni: '32.451.879/0001-77', address: 'Av Geek', email: 'contato@geek.com', phone: '51 3456-7890')
       category = Category.create!(name: 'Geek')
       product_model = ProductModel.create!(name: 'Caneca Star Wars', height: '14', width: '10', length: '8', weight: 300, supplier: supplier, category: category)
@@ -48,10 +48,31 @@ describe 'ProductModel API' do
       expect(parsed_response.keys).not_to include 'updated_at'
     end
 
-    it 'fornecedor não existe' do
+    it 'fornecedor não existe - 404' do
       get '/api/v1/product_models/777'
 
+      expect(response.content_type).to include('application/json')
+      parsed_response = JSON.parse(response.body)
+      expect(parsed_response["error"]).to eq 'Objeto não encontrado'
       expect(response.status).to eq 404
+    end
+
+    it 'parâmetro inválido - 412' do
+      
+    end
+
+    it 'erro de base de dados - 500' do
+      supplier = Supplier.create!(fantasy_name: 'Fábrica Geek', legal_name: 'Geek Comercio de Ceramicas LTDA', eni: '32.451.879/0001-77', address: 'Av Geek', email: 'contato@geek.com', phone: '51 3456-7890')
+      category = Category.create!(name: 'Geek')
+      pm = ProductModel.create!(name: 'Pelúcia Dumbo', height: '50', width: '40', length: '20', weight: 400, supplier: supplier, category: category)
+      allow(ProductModel).to receive(:find).with(pm.id.to_s).and_raise ActiveRecord::ConnectionNotEstablished
+
+      get "/api/v1/product_models/#{pm.id}"
+
+      expect(response.content_type).to include('application/json')
+      parsed_response = JSON.parse(response.body)
+      expect(parsed_response["error"]).to eq 'Não foi possível conectar no banco de dados'
+      expect(response.status).to eq 500
     end
   end
 end
