@@ -40,6 +40,7 @@ describe 'Usuário dá entrada em novos itens' do
 
       login_as(user)
       visit root_path
+      click_on 'Visualizar galpões'
       click_on 'Maceió'
       fill_in 'Quantidade', with: 2
       select 'Vinho Tinto Miolo', from: 'Produto'
@@ -74,6 +75,7 @@ describe 'Usuário dá entrada em novos itens' do
 
       login_as(user)
       visit root_path
+      click_on 'Visualizar galpões'
       click_on 'Maceió'
 
       expect(page).to have_content('Vinho Tinto Miolo')

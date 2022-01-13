@@ -9,6 +9,7 @@ describe 'Usuário edita galpão' do
 
     login_as(user, :scope => :user)
     visit root_path
+    click_on 'Visualizar galpões'
     click_on 'Maceió'
     click_on 'Editar'
 
@@ -34,6 +35,7 @@ describe 'Usuário edita galpão' do
 
     login_as(user, :scope => :user)
     visit root_path
+    click_on 'Visualizar galpões'
     click_on 'Maceió'
     click_on 'Editar'
     fill_in 'Nome', with: 'Maceió'
@@ -67,6 +69,7 @@ describe 'Usuário edita galpão' do
     
     login_as(user, :scope => :user)
     visit root_path
+    click_on 'Visualizar galpões'
     click_on 'Cadastrar novo galpão'
     fill_in 'Nome', with: ''
     fill_in 'Código', with: ''

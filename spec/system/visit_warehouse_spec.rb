@@ -7,6 +7,7 @@ describe 'Visitante vê um galpão' do
                      postal_code: '57050-000', total_area: 10000, useful_area: 8000)
 
     visit root_path
+    click_on 'Visualizar galpões'
     click_on 'Maceió'
 
     expect(page).to have_css('h1', text: 'Maceió')
@@ -31,10 +32,11 @@ describe 'Visitante vê um galpão' do
                      total_area: 10000, useful_area: 8000)
 
     visit root_path
+    click_on 'Visualizar galpões'
     click_on 'Maceió'
     click_on 'Voltar'
 
-    expect(current_path).to eq root_path
+    expect(current_path).to eq warehouses_path
   end
 
   it 'e consegue pesquisar um galpão pelo nome' do
@@ -52,10 +54,11 @@ describe 'Visitante vê um galpão' do
                      total_area: 10000, useful_area: 8000)
 
     visit root_path
+    click_on 'Visualizar galpões'
     fill_in 'Busca:', with: 'Guarulhos'
     click_on 'Filtrar'
 
-    expect(current_path).to eq root_path
+    expect(current_path).to eq warehouses_path
     expect(page).to have_content('Guarulhos')
     expect(page).to have_content('Dutra')
     expect(page).not_to have_content('Maceió')

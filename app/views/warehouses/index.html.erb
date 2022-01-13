@@ -1,0 +1,20 @@
+<h3>Galpões cadastrados</h3>
+
+<%= form_with url: warehouses_path, method: :get do %>
+  <%= label_tag :term, 'Busca:' %>
+  <%= text_field_tag :term %>
+  <%= submit_tag 'Filtrar' %>
+<% end %>
+
+<table>
+  <tr>
+    <th>Nome</th>
+    <th>Código</th>
+  <tr>
+  <% @warehouses.each do |warehouse| %>
+    <tr>
+      <td><%= link_to(warehouse.name, warehouse_path(warehouse.id)) %></td>
+      <td><%= warehouse.code %></td>
+    <tr>
+  <% end %>
+</table>

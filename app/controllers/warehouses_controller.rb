@@ -1,6 +1,14 @@
 class WarehousesController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update]
 
+  def index
+    if !params[:term]
+      @warehouses = Warehouse.all
+    else
+      @warehouses = Warehouse.where("name LIKE ? OR code LIKE ? OR city LIKE ?", "%#{params[:term]}%", "%#{params[:term]}%", "%#{params[:term]}%")
+    end
+  end
+
   def new
     @warehouse = Warehouse.new
   end
