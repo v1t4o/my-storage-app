@@ -9,3 +9,5 @@ pt-BR:
         height: 'Altura'
         width: 'Largura'
         length: 'Profundidade'
+        supplier_id: 'Fornecedor'
+        category_id: 'Categoria'
