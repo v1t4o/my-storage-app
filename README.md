@@ -33,6 +33,7 @@ Status: 200 (OK)
     "name":"Juiz de Fora",
     "code":"JDF",
     "description":"Ótimo Galpão",
+    "address":"Av Rio Branco",
     "city":"Juiz de Fora",
     "state":"MG",
     "postal_code":"36000-000",
@@ -57,6 +58,7 @@ POST /api/v1/warehouses
   "name":"Juiz de Fora",
   "code":"JDF",
   "description":"Ótimo Galpão",
+  "address":"Av Rio Branco",
   "city":"Juiz de Fora",
   "state":"MG",
   "postal_code":"36000-000",
@@ -76,10 +78,79 @@ Status: 201 (Criado)
     "name":"Juiz de Fora",
     "code":"JDF",
     "description":"Ótimo Galpão",
+    "address":"Av Rio Branco",
     "city":"Juiz de Fora",
     "state":"MG",
     "postal_code":"36000-000",
     "total_area":5000,
     "useful_area":3000
+  }
+]
+
+```
+
+### Fornecedores
+
+#### Listar todos os fornecedores
+
+**Requisição:**
+
+```
+GET /api/v1/suppliers
+```
+
+**Resposta:**
+
+```
+Status: 200 (OK)
+
+[
+  {
+    "id":1,
+    "fantasy_name":"Fábrica Geek",
+    "legal_name":"Fábrica Geek LTDA",
+    "eni":"32.245.145/0001-77",
+    "address":"Av Josias",
+    "email":"contato@geek.com",
+    "phone":"11 4184-6588"
+  }
+]
+```
+
+#### Criar um galpão
+
+**Requisição:**
+
+```
+POST /api/v1/suppliers
+```
+
+**Parâmetros:**
+
+```
+{
+  "fantasy_name":"Fábrica Geek",
+  "legal_name":"Fábrica Geek LTDA",
+  "eni":"32.245.145/0001-77",
+  "address":"Av Josias",
+  "email":"contato@geek.com",
+  "phone":"11 4184-6588"
+}
+```
+
+**Resposta:**
+
+```
+Status: 201 (Criado)
+
+[
+  {
+    "id":1,
+    "fantasy_name":"Fábrica Geek",
+    "legal_name":"Fábrica Geek LTDA",
+    "eni":"32.245.145/0001-77",
+    "address":"Av Josias",
+    "email":"contato@geek.com",
+    "phone":"11 4184-6588"
   }
 ]
