@@ -117,7 +117,7 @@ Status: 200 (OK)
 ]
 ```
 
-#### Criar um galpão
+#### Criar um fornecedor
 
 **Requisição:**
 
@@ -152,5 +152,101 @@ Status: 201 (Criado)
     "address":"Av Josias",
     "email":"contato@geek.com",
     "phone":"11 4184-6588"
+  }
+]
+```
+
+### Modelos de produtos
+
+#### Listar todos os modelos de produtos
+
+**Requisição:**
+
+```
+GET /api/v1/product_models
+```
+
+**Resposta:**
+
+```
+Status: 200 (OK)
+
+[
+  {
+    "id":1,
+    "name":"Caneta Miranha",
+    "weight":100,
+    "height":10,
+    "length":21,
+    "width":25,
+    "sku":"D522614F4FC2BE534465CB0531227111E6A8F35C","dimensions":"10 x 25 x 21",
+    "supplier":
+      {
+        "id":1,
+        "fantasy_name":"Curitibox",
+        "legal_name":"Curitibox LTDA",
+        "eni":"32.245.145/0001-77",
+        "address":"Av Josias",
+        "email":"contato@curitibox.com",
+        "phone":"11 4184-6588"
+      },
+    "category":
+      {
+        "name":"Utensílios"
+      }
+  }
+]
+```
+
+#### Criar um modelo de produto
+
+**Requisição:**
+
+```
+POST /api/v1/product_models
+```
+
+**Parâmetros:**
+
+```
+{
+  "name":"Pelúcia Dumbo",
+  "weight":"200",
+  "height":"18",
+  "length":"8",
+  "width":"10",
+  "supplier_id":"1",
+  "category_id":"1",
+}
+```
+
+**Resposta:**
+
+```
+Status: 201 (Criado)
+
+[
+  {
+    "id":1,
+    "name":"Caneta Miranha",
+    "weight":100,
+    "height":10,
+    "length":21,
+    "width":25,
+    "sku":"D522614F4FC2BE534465CB0531227111E6A8F35C","dimensions":"10 x 25 x 21",
+    "supplier":
+      {
+        "id":1,
+        "fantasy_name":"Curitibox",
+        "legal_name":"Curitibox LTDA",
+        "eni":"32.245.145/0001-77",
+        "address":"Av Josias",
+        "email":"contato@curitibox.com",
+        "phone":"11 4184-6588"
+      },
+    "category":
+      {
+        "name":"Utensílios"
+      }
   }
 ]
