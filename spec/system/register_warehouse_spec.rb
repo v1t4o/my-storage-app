@@ -89,7 +89,7 @@ describe 'Usuário cadastra um galpão' do
     click_on 'Gravar'
 
     expect(page).not_to have_content 'Galpão registrado com sucesso'
-    expect(page).to have_content 'Não foi possível gravar o galpão'
+    expect(page).to have_content 'Não foi possível criar o galpão'
     expect(page).to have_content "Nome não pode ficar em branco"
     expect(page).to have_content "Código não pode ficar em branco"
     expect(page).to have_content "Descrição não pode ficar em branco"

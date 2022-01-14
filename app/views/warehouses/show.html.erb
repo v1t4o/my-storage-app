@@ -30,21 +30,23 @@
   </div>
 <% end %>
 
-<h2>Entrada de Itens</h2>
-<%= form_with(url: product_entry_warehouse_path(@warehouse.id)) do |f| %>
-  <% f.hidden_field(:warehouse_id, value: @warehouse.id) %>
-  <div>
-    <%= f.label :quantity, 'Quantidade' %>
-    <%= f.number_field :quantity %>
-  </div>
-  <div>
-    <%= f.label :product_model_id, 'Produto' %>
-    <%= f.select :product_model_id, options_from_collection_for_select(@product_models, :id, :name) %>
-  </div>
-  <div>
-    <%= f.submit 'Confirmar' %>
-  </div>
+<% if user_signed_in? %>
+  <h2 id="label-product-entry">Entrada de Itens</h2>
+  <%= form_with(url: product_entry_warehouse_path(@warehouse.id)) do |f| %>
+    <% f.hidden_field(:warehouse_id, value: @warehouse.id) %>
+    <div>
+      <%= f.label :quantity, 'Quantidade' %>
+      <%= f.number_field :quantity %>
+    </div>
+    <div>
+      <%= f.label :product_model_id, 'Produto' %>
+      <%= f.select :product_model_id, options_from_collection_for_select(@product_models, :id, :name) %>
+    </div>
+    <div>
+      <%= f.submit 'Confirmar' %>
+    </div>
+  <% end %>
+  <%= link_to 'Editar', edit_warehouse_path(@warehouse) %>
 <% end %>
 
 <%= link_to 'Voltar', warehouses_path %>
-<%= link_to 'Editar', edit_warehouse_path(@warehouse) %>

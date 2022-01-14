@@ -2,11 +2,12 @@ class WarehousesController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update]
 
   def index
-    if !params[:term]
-      @warehouses = Warehouse.all
-    else
+    if params[:term]
       @warehouses = Warehouse.where("name LIKE ? OR code LIKE ? OR city LIKE ?", "%#{params[:term]}%", "%#{params[:term]}%", "%#{params[:term]}%")
+      return
     end
+
+    @warehouses = Warehouse.all
   end
 
   def new
@@ -20,10 +21,10 @@ class WarehousesController < ApplicationController
     @warehouse = Warehouse.new(warehouse_params)
     if @warehouse.save()
       redirect_to warehouse_path(@warehouse.id), notice: 'Galpão registrado com sucesso'
-    else
-      flash.now[:alert] = 'Não foi possível gravar o galpão'
-      render 'new'
+      return
     end
+    flash.now[:alert] = 'Não foi possível criar o galpão'
+    render 'new'
   end
 
   def show
@@ -42,10 +43,10 @@ class WarehousesController < ApplicationController
                                                          :useful_area, :total_area, category_ids: [])
     if @warehouse.update(warehouse_params)
       redirect_to warehouse_path(@warehouse.id), notice: 'Galpão alterado com sucesso'
-    else
-      flash.now[:alert] = 'Não foi possível editar o galpão'
-      render 'edit'
+      return
     end
+    flash.now[:alert] = 'Não foi possível alterar o galpão'
+    render 'edit'
   end
 
   def product_entry
