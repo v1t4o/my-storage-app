@@ -1,52 +1,84 @@
-<h1><%= @warehouse.name %></h1>
-<h2><%= @warehouse.code %></h2>
-
-<div id="detalhes-galpao">
-  <dl>
-    <dt>Descrição:</dt>
-    <dd><%= @warehouse.description %></dd>
-    <dt>Endereço:</dt>
-    <dd><%= @warehouse.address %> - <%= @warehouse.city %>/<%= @warehouse.state %></dd>
-    <dt>CEP:</dt>
-    <dd><%= @warehouse.postal_code %></dd>
-    <dt>Área Total:</dt>
-    <dd><%= @warehouse.total_area %> m2</dd>
-    <dt>Área Útil:</dt>
-    <dd><%= @warehouse.useful_area %> m2</dd>
-    <dt>Categorias:</dt>
-    <% @warehouse.categories.each do |category| %>
-      <dd><%= category.name %></dd>
-    <% end %>
-  </dl>
-</div>
-
-<h2>Estoque</h2>
-
-<% @items = @warehouse.product_items.group(:product_model).count %>
-<% @items.each_pair do |product_model, quantity| %>
-  <div id="product-<%= product_model.id %>">
-    <%= product_model.name %>
-    Quantidade: <%= quantity %>
+<div class="row">
+  <div class="col-sm">
+    <h2><%= @warehouse.name %></h2>
   </div>
-<% end %>
-
-<% if user_signed_in? %>
-  <h2 id="label-product-entry">Entrada de Itens</h2>
-  <%= form_with(url: product_entry_warehouse_path(@warehouse.id)) do |f| %>
-    <% f.hidden_field(:warehouse_id, value: @warehouse.id) %>
-    <div>
-      <%= f.label :quantity, 'Quantidade' %>
-      <%= f.number_field :quantity %>
+  <% if user_signed_in? %>
+    <div class="col-auto float-right">
+      <%= link_to 'Editar', edit_warehouse_path(@warehouse), class: 'btn btn-warning' %>
     </div>
-    <div>
-      <%= f.label :product_model_id, 'Produto' %>
-      <%= f.select :product_model_id, options_from_collection_for_select(@product_models, :id, :name) %>
-    </div>
-    <div>
-      <%= f.submit 'Confirmar' %>
+    <div class="col-auto float-right">
+      <%= link_to 'Voltar', warehouses_path, class: 'btn btn-primary' %>
     </div>
   <% end %>
-  <%= link_to 'Editar', edit_warehouse_path(@warehouse) %>
-<% end %>
+</div>
 
-<%= link_to 'Voltar', warehouses_path %>
+<div class="card">
+  <div class="card-header"><h4><%= @warehouse.code %></h4></div>
+  <div class="card-body">
+    <div id="detalhes-galpao">
+      <dl class="row">
+        <dt class="col-sm-2">Descrição:</dt>
+        <dd class="col-sm-10"><%= @warehouse.description %></dd>
+        <dt class="col-sm-2">Endereço:</dt>
+        <dd class="col-sm-10"><%= @warehouse.address %> - <%= @warehouse.city %>/<%= @warehouse.state %></dd>
+        <dt class="col-sm-2">CEP:</dt>
+        <dd class="col-sm-10"><%= @warehouse.postal_code %></dd>
+        <dt class="col-sm-2">Área Total:</dt>
+        <dd class="col-sm-10"><%= @warehouse.total_area %> m2</dd>
+        <dt class="col-sm-2">Área Útil:</dt>
+        <dd class="col-sm-10"><%= @warehouse.useful_area %> m2</dd>
+        <dt>Categorias:</dt>
+        <% @warehouse.categories.each do |category| %>
+          <dd><%= category.name %></dd>
+        <% end %>
+      </dl>
+    </div>
+  </div>
+</div>
+<br>
+<div class="card">
+  <div class="card-header"><h4>Estoque</h4></div>
+  <div class="card-body">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Produto</th>
+          <th scope="col">Quantidade</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @items = @warehouse.product_items.group(:product_model).count %>
+        <% @items.each_pair do |product_model, quantity| %>
+          <tr id="product-<%= product_model.id %>">
+            <td><%= product_model.name %></td>
+            <td><%= quantity %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+<br>
+<% if user_signed_in? %>
+  <div class="card">
+    <div class="card-header"><h4 id="label-product-entry">Entrada de Itens</h4></div>
+    <div class="card-body">
+      <%= form_with(url: product_entry_warehouse_path(@warehouse.id)) do |f| %>
+        <% f.hidden_field(:warehouse_id, value: @warehouse.id) %>
+        <div class="form-group">
+          <b><%= f.label :quantity, 'Quantidade' %></b>
+          <%= f.number_field :quantity, class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <b><%= f.label :product_model_id, 'Produto' %></b><br>
+          <%= @product_models.empty? ? 'Não há modelos de produtos cadastrados' : f.collection_select(:product_model_id, @product_models, :id, :name, {}, class: 'form-control') %>
+        </div>
+        <br>
+        <div class="form-group">
+          <%= f.submit 'Confirmar', class: 'btn btn-success' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+<br>

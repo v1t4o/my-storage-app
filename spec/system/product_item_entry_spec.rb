@@ -3,7 +3,7 @@ require 'rails_helper'
 describe 'Usuário dá entrada em novos itens' do
   it 'com sucesso' do
     user = create(:user)
-    create_list(:user, 10)
+    #create_list(:user, 10)
     category = create(:category)
     warehouse = create(:warehouse, name: 'Maceió', code: 'MCZ', category_ids: [category.id])
     supplier = create(:supplier)
@@ -19,6 +19,7 @@ describe 'Usuário dá entrada em novos itens' do
     click_on 'Confirmar'
 
     expect(current_path).to eq warehouse_path(warehouse.id)
+    expect(page).to have_content("Entrada de produtos realizada com sucesso!")
     expect(page).to have_css('h2', text: 'Estoque')
     within("div#product-#{p1.id}") do
       expect(page).to have_content('Vinho Tinto Miolo')
@@ -65,6 +66,7 @@ describe 'Usuário dá entrada em novos itens' do
       select 'Vinho Tinto Miolo', from: 'Produto'
       click_on 'Confirmar'
 
+      expect(page).to have_content("Entrada de produtos realizada com sucesso!")
       expect(current_path).to eq warehouse_path(warehouse.id)
       expect(page).to have_css('h2', text: 'Estoque')
       within("div#product-#{p1.id}") do

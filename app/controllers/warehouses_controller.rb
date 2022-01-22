@@ -52,6 +52,7 @@ class WarehousesController < ApplicationController
   def product_entry
     pe = ProductEntry.new(quantity: params[:quantity], product_model_id: params[:product_model_id], warehouse_id: params[:id])
     pe.process()
+    flash[:alert] = 'Entrada de produtos realizada com sucesso!'
     redirect_to warehouse_path(pe.warehouse_id)
   end
 end

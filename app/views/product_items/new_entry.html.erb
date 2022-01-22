@@ -1,19 +1,20 @@
-<h1>Registrar a entrada de lote</h1>
+<h2>Registrar a entrada de lote</h2>
 
 <%= form_with(url: product_items_entry_path) do |f| %>
-  <div>
-    <%= f.label :quantity, 'Quantidade' %>
-    <%= f.number_field :quantity, min: '1' %>
+  <div class="form-group">
+    <b><%= f.label :quantity, 'Quantidade' %></b>
+    <%= f.number_field :quantity, {min: '1', class: 'form-control'} %>
   </div>
-  <div>
-    <%= f.label :warehouse_id, 'Galpão Destino' %>
-    <%= f.select :warehouse_id, options_from_collection_for_select(@warehouses, :id, :code) %>
+  <div class="form-group">
+    <b><%= f.label :warehouse_id, 'Galpão Destino' %></b><br>
+    <%= @warehouses.empty? ? 'Não há galpões cadastrados' : f.collection_select(:warehouse_id, @warehouses, :id, :code, {}, class: 'form-control') %>
   </div>
-  <div>
-    <%= f.label :product_model_id, 'Produto' %>
-    <%= f.select :product_model_id, options_from_collection_for_select(@product_models, :id, :name) %>
+  <div class="form-group">
+    <b><%= f.label :product_model_id, 'Produto' %></b><br>
+    <%= @product_models.empty? ? 'Não há modelos de produtos cadastrados' : f.collection_select(:product_model_id, @product_models, :id, :name, {}, class: 'form-control') %>
   </div>
-  <div>
-    <%= f.submit 'Confirmar' %>
+  <br>
+  <div class="form-group">
+    <%= f.submit 'Confirmar', class: 'btn btn-success' %>
   </div>
 <% end %>

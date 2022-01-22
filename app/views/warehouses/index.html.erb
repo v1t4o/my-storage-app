@@ -1,25 +1,41 @@
-<h3>Galpões cadastrados</h3>
-
-<% if @warehouses.empty? %>
-  <strong>Nenhum galpão cadastrado</strong>
-<% else %>
+  <div class="row">
+    <h2>Galpões cadastrados</h2>
+  </div>
   <%= form_with url: warehouses_path, method: :get do %>
-    <%= label_tag :term, 'Busca:' %>
-    <%= text_field_tag :term %>
-    <%= submit_tag 'Filtrar' %>
+    <div class="form-group row">
+      <div class="col-auto" style="padding-top:0.3rem;">
+        <b><%= label_tag :term, 'Busca:' %></b>
+      </div>
+      <div class="col-sm">
+        <%= text_field_tag :term, {}, class: 'form-control' %>
+      </div>
+      <div class="col-auto">
+        <%= submit_tag 'Filtrar', class: 'btn btn-primary' %>
+      </div>
+    </div>
   <% end %>
-  <table>
-    <tr>
-      <th>Nome</th>
-      <th>Código</th>
-      <%if user_signed_in? %><th>Ações</th><% end %>
-    <tr>
-    <% @warehouses.each do |warehouse| %>
-      <tr id="warehouse-<%= warehouse.id %>">
-        <td><%= link_to(warehouse.name, warehouse_path(warehouse.id)) %></td>
-        <td><%= warehouse.code %></td>
-        <%if user_signed_in? %><td><%= link_to('Editar', edit_warehouse_path(warehouse.id)) %></td><% end %>
-      <tr>
-    <% end %>
-  </table>
-<% end %>
+  <% if @warehouses.empty? %>
+    <div class="row">
+      <strong style="color:red">Nenhum galpão cadastrado</strong>
+    </div>
+  <% end %>
+  <div class="row">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Nome</th>
+          <th scope="col">Código</th>
+          <%if user_signed_in? %><th scope="col">Ações</th><% end %>
+        <tr>
+      <thead>
+      <tbody>
+        <% @warehouses.each do |warehouse| %>
+          <tr id="warehouse-<%= warehouse.id %>">
+            <td><%= link_to(warehouse.name, warehouse_path(warehouse.id)) %></td>
+            <td><%= warehouse.code %></td>
+            <%if user_signed_in? %><td><%= link_to('Editar', edit_warehouse_path(warehouse.id), class: 'btn btn-warning') %></td><% end %>
+          <tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
