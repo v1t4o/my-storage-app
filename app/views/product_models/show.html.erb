@@ -1,33 +1,52 @@
-<h1><%= @product_model.name %></h1>
-<div>
-  <dl>
-    <dt>Peso:</dt>
-    <dd><%= @product_model.weight %> gramas</dd>
-    <dt>Dimensões:</dt>
-    <dd><%= @product_model.dimensions %></dd>
-    <dt>Código SKU:</dt>
-    <dd><%= @product_model.sku %></dd>
-    <dt>Fornecedor:</dt>
-    <dd><%= @product_model.supplier.fantasy_name %></dd>
-    <dt>Categoria:</dt>
-    <dd><%= @product_model.category.name %></dd>
-  </dl>
+<div class="row">
+  <div class="col-sm">
+    <h2><%= @product_model.name %></h2>
+  </div>
+  <div class="col-auto float-right">
+    <%= link_to 'Editar', edit_product_model_path(@product_model), class: 'btn btn-warning' %>
+  </div>
+  <div class="col-auto pull-right">
+    <%= link_to 'Voltar', root_path, class: 'btn btn-primary' %>
+  </div>
 </div>
-
-<h2>Estoques</h2>
-<table>
-  <tr>
-    <th>Galpão</th>
-    <th>Quantidade</th>
-  </tr>
-  <% @items = @product_model.product_items.group(:warehouse).count %>
-  <% @items.each_pair do |warehouse, quantity| %>
-    <tr id="warehouse-<%= warehouse.id %>">
-      <td><%= warehouse.name %></td>
-      <td><%= quantity %></td>
-    </tr>
-  <% end %>
-</table>
-
-<%= link_to 'Voltar', root_path %>
-<%= link_to 'Editar', edit_product_model_path(@product_model) %>
+<div class="card">
+  <div class="card-header"><h4>Dados do Modelo</h4></div>
+  <div class="card-body">
+    <dl class="row">
+      <dt class="col-sm-2">Peso:</dt>
+      <dd class="col-sm-10"><%= @product_model.weight %> gramas</dd>
+      <dt class="col-sm-2">Dimensões:</dt>
+      <dd class="col-sm-10"><%= @product_model.dimensions %></dd>
+      <dt class="col-sm-2">Código SKU:</dt>
+      <dd class="col-sm-10"><%= @product_model.sku %></dd>
+      <dt class="col-sm-2">Fornecedor:</dt>
+      <dd class="col-sm-10"><%= @product_model.supplier.fantasy_name %></dd>
+      <dt class="col-sm-2">Categoria:</dt>
+      <dd class="col-sm-10"><%= @product_model.category.name %></dd>
+    </dl>
+  </div>
+</div>
+<br>
+<div class="card">
+  <div class="card-header"><h4>Estoques</h4></div>
+  <div class="card-body">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Galpão</th>
+          <th scope="col">Quantidade</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @items = @product_model.product_items.group(:warehouse).count %>
+        <% @items.each_pair do |warehouse, quantity| %>
+          <tr id="warehouse-<%= warehouse.id %>">
+            <td><%= warehouse.name %></td>
+            <td><%= quantity %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+<br>

@@ -1,40 +1,53 @@
 <% if @product_model.errors.any? %>
-  <span>Verifique os campos abaixo:</span>
-  <ul>
-    <% @product_model.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-  </ul>
+  <div class="row">
+    <span>Verifique os campos abaixo:</span>
+    <ul>
+      <% @product_model.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
 <% end %>
 
-<%= form_with(model: @product_model) do |form| %>
-  <div>
-    <%= form.label :name, 'Nome' %>
-    <%= form.text_field :name %>
-  </div>
-  <div>
-    <%= form.label :weight, 'Peso' %>
-    <%= form.text_field :weight %>
-  </div>
-  <div>
-    <%= form.label :height, 'Altura' %>
-    <%= form.text_field :height %>
-  </div>
-  <div>
-    <%= form.label :width, 'Largura' %>
-    <%= form.text_field :width %>
-  </div>
-  <div>
-    <%= form.label :length, 'Profundidade' %>
-    <%= form.text_field :length %>
-  </div>
-  <div>
-    <%= form.label :supplier_id, 'Fornecedor' %>
-    <%= form.collection_select(:supplier_id, Supplier.all, :id, :fantasy_name) %>
-  </div>
-  <div>
-    <%= form.label :category_id, 'Categoria' %>
-    <%= form.collection_select(:category_id, Category.all, :id, :name) %>
-  </div>
-  <%= form.submit 'Gravar' %>
-<% end %>
+<div class="row">
+  <%= form_with(model: @product_model) do |form| %>
+    <div class="form-group row">
+      <div class="col-sm">
+        <b><%= form.label :name, 'Nome' %></b>
+        <%= form.text_field :name, class: 'form-control' %>
+      </div>
+      <div class="col-sm">
+        <b><%= form.label :weight, 'Peso' %></b>
+        <%= form.text_field :weight, class: 'form-control' %>
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-sm">
+        <b><%= form.label :height, 'Altura' %></b>
+        <%= form.text_field :height, class: 'form-control' %>
+      </div>
+      <div class="col-sm">
+        <b><%= form.label :width, 'Largura' %></b>
+        <%= form.text_field :width, class: 'form-control' %>
+      </div>
+      <div class="col-sm">
+        <b><%= form.label :length, 'Profundidade' %></b>
+        <%= form.text_field :length, class: 'form-control' %>
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-sm">
+        <b><%= form.label :supplier_id, 'Fornecedor' %></b>
+        <%= form.collection_select(:supplier_id, Supplier.all, :id, :fantasy_name, {}, class: 'form-control') %>
+      </div>
+      <div class="col-sm">
+        <b><%= form.label :category_id, 'Categoria' %></b>
+        <%= form.collection_select(:category_id, Category.all, :id, :name, {}, class: 'form-control') %>
+      </div>
+    </div>
+    <br>
+    <div class="form-group">
+      <%= form.submit 'Gravar', class: 'btn btn-success' %>
+    </div>
+  <% end %>
+</div>

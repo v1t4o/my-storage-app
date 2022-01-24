@@ -1,12 +1,17 @@
-<h1>Categorias cadastradas</h1>
-
-<table>
-  <tr>
-    <th>Nome</th>
-  </tr>
-  <% @categories.each do |category| %>
-    <tr>
-      <td><%= link_to category.name, category %></td>
-    </tr>
-  <% end %>
-</table>
+<h2>Categorias cadastradas</h2>
+<div class="row">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Nome</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @categories.each do |category| %>
+        <tr>
+          <td><%= link_to category.name, category %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

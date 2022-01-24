@@ -1,16 +1,20 @@
 <h2><%= @category.name %></h2>
-
-<h3>Modelos de produto</h3>
-
-<table>
-  <tr>
-    <td>Nome</td>
-    <td>Fornecedor</td>
-  </tr>
-  <% @category.product_models.each do |product_model| %>
-    <tr>
-      <td><%= product_model.name %></td>
-      <td><%= product_model.supplier.fantasy_name %></td>
-    </tr>
-  <% end %>
-</table>
+<div class="card">
+  <div class="card-header"><h4>Modelos de produto</h4></div>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Nome</th>
+        <th scope="col">Fornecedor</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @category.product_models.each do |product_model| %>
+        <tr>
+          <td><%= product_model.name %></td>
+          <td><%= product_model.supplier.fantasy_name %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

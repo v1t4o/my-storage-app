@@ -26,7 +26,7 @@
           <th scope="col">Nome</th>
           <th scope="col">Código</th>
           <%if user_signed_in? %><th scope="col">Ações</th><% end %>
-        <tr>
+        </tr>
       <thead>
       <tbody>
         <% @warehouses.each do |warehouse| %>
@@ -34,7 +34,7 @@
             <td><%= link_to(warehouse.name, warehouse_path(warehouse.id)) %></td>
             <td><%= warehouse.code %></td>
             <%if user_signed_in? %><td><%= link_to('Editar', edit_warehouse_path(warehouse.id), class: 'btn btn-warning') %></td><% end %>
-          <tr>
+          </tr>
         <% end %>
       </tbody>
     </table>

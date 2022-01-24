@@ -1,30 +1,45 @@
-<h1><%= @supplier.fantasy_name %></h1>
-<h2>Razão Social: <%= @supplier.legal_name %></h2>
-<div>
-  <dl>
-    <dt>CNPJ:</dt>
-    <dd><%= @supplier.eni %></dd>
-    <dt>Endereço:</dt>
-    <dd><%= @supplier.address %></dd>
-    <dt>E-mail:</dt>
-    <dd><%= @supplier.email %></dd>
-    <dt>Telefone:</dt>
-    <dd><%= @supplier.phone %></dd>
-  </dl>
+<div class="row">
+  <div class="col-sm">
+    <h2><%= @supplier.fantasy_name %></h2>
+  </div>
+  <div class="col-auto float-right">
+    <%= link_to 'Voltar', suppliers_path, {class: 'btn btn-primary'} %>
+  </div>
 </div>
-
-<h2>Produtos deste fornecedor:</h2>
-<table>
-  <tr>
-    <th>Produto</th>
-    <th>SKU</th>
-  </tr>
-  <% @supplier.product_models.each do |product| %>
-    <tr> 
-      <td><%= product.name %></td>
-      <td><%= product.sku %></td>
-    </tr>
-  <% end %>
-</table>
-
-<%= link_to 'Voltar', suppliers_path %>
+<div class="card">
+  <div class="card-header"><h4>Razão Social: <%= @supplier.legal_name %></h4></div>
+  <div class="card-body">
+    <dl class="row">
+      <dt class="col-sm-2">CNPJ:</dt>
+      <dd class="col-sm-10"><%= @supplier.eni %></dd>
+      <dt class="col-sm-2">Endereço:</dt>
+      <dd class="col-sm-10"><%= @supplier.address %></dd>
+      <dt class="col-sm-2">E-mail:</dt>
+      <dd class="col-sm-10"><%= @supplier.email %></dd>
+      <dt class="col-sm-2">Telefone:</dt>
+      <dd class="col-sm-10"><%= @supplier.phone %></dd>
+    </dl>
+  </div>
+</div>
+<br>
+<div class="card">
+  <div class="card-header"><h4>Produtos deste fornecedor:</h4></div>
+  <div class="card-body">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Produto</th>
+          <th scope="col">SKU</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @supplier.product_models.each do |product| %>
+          <tr> 
+            <td><%= product.name %></td>
+            <td><%= product.sku %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

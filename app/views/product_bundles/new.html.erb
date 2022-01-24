@@ -1,22 +1,28 @@
-<h2>Novo kit de produto</h2>
-
+<div class="row">
+  <h2>Novo kit de produto</h2>
+</div>
 <% if @product_bundle.errors.any? %>
-  <span>Verifique os campos abaixo:</span>
-  <ul>
-    <% @product_bundle.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-  </ul>
+  <div class="row">
+    <span>Verifique os campos abaixo:</span>
+    <ul>
+      <% @product_bundle.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
 <% end %>
 
 <%= form_with(model: @product_bundle) do |form| %>
-  <div>
-    <%= form.label :name, 'Nome' %>
-    <%= form.text_field :name %>
+  <div class="form-group">
+    <b><%= form.label :name, 'Nome' %></b>
+    <%= form.text_field :name, class: 'form-control' %>
   </div>
-  <div>
-    <span>Escolha os produtos</span>
-    <%= form.collection_check_boxes :product_model_ids, ProductModel.all, :id, :name %>
+  <div class="form-group">
+    <b><span>Escolha os produtos</span></b><br>
+    <%= form.collection_check_boxes :product_model_ids, ProductModel.all, :id, :name, {}, class: 'form-check-input' %>
   </div>
-  <%= form.submit 'Gravar' %>
+  <br>
+  <div class="form-group">
+    <%= form.submit 'Gravar', class: 'btn btn-success' %>
+  </div>
 <% end %>

@@ -1,20 +1,28 @@
-<h3>Fornecedores cadastrados</h3>
-
+<div class="row">
+  <h2>Fornecedores cadastrados</h2>
+</div>
 <% if @suppliers.empty? %>
-  <strong>Nenhum fornecedor cadastrado</strong>
-<% else %>
-  <table>
-    <tr>
-      <th>Nome Fantasia</th>
-      <th>CNPJ</th>
-      <th>Ações</th>
-    </tr>
-    <% @suppliers.each do |supplier| %>
-      <tr>
-        <td><%= link_to(supplier.fantasy_name, supplier_path(supplier.id)) %></td>
-        <td><%= supplier.eni %></td>
-        <td><%= link_to 'Editar', edit_supplier_path(supplier.id), id: "edit-#{supplier.id}" %></td>
-      </tr>
-    <% end %>
-  </table>
+  <div class="row">
+    <strong style="color:red;">Nenhum fornecedor cadastrado</strong>
+  </div>
 <% end %>
+<div class="row">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Nome Fantasia</th>
+        <th scope="col">CNPJ</th>
+        <% if user_signed_in? %><th scope="col">Ações</th><% end %>
+      </tr>
+    </thead>
+    <tbody>
+      <% @suppliers.each do |supplier| %>
+        <tr>
+          <td><%= link_to(supplier.fantasy_name, supplier_path(supplier.id)) %></td>
+          <td><%= supplier.eni %></td>
+          <td><%= link_to 'Editar', edit_supplier_path(supplier.id), {id: "edit-#{supplier.id}", class: 'btn btn-warning'} if user_signed_in? %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

@@ -54,6 +54,7 @@
               <ul class="dropdown-menu" aria-labelledby="navbarDropdownProduct">
                 <%= link_to 'Visualizar modelos de produtos', product_models_path, class: "dropdown-item" %>
                 <%= link_to 'Cadastrar modelo de produto', new_product_model_path, class: "dropdown-item" if user_signed_in? %>
+                <%= link_to 'Visualizar kits de produtos', product_bundles_path, class: "dropdown-item" %>
                 <%= link_to 'Criar novo kit de produtos', new_product_bundle_path, class: "dropdown-item" if user_signed_in? %>
               </ul>
             </li>
@@ -82,8 +83,11 @@
     </header>
     <main class="flex-shrink-0">
       <div class="container">
-        <div class="notice"><%= notice %></div>
-        <div class="alert"><%= alert %></div>
+        <div class="row">
+          <%= notice %>
+          <%= alert %>
+        </div>
+        <br>
         <div><%= yield %></div>
       </div>
     </main>

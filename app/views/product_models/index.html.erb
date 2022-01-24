@@ -1,22 +1,36 @@
-<h1>Modelos de produtos</h1>
-
+<div class="row">
+  <h2>Modelos de produtos</h2>
+</div>
 <%= form_with url: product_models_path, method: :get do %>
-  <%= label_tag :term, 'Buscar por fornecedor:' %>
-  <%= text_field_tag :term %>
-  <%= submit_tag 'Filtrar' %>
+  <div class="form-group row">
+    <div class="col-auto" style="padding-top:0.3rem;">
+      <b><%= label_tag :term, 'Busca:' %></b>
+    </div>
+    <div class="col-sm">
+      <%= text_field_tag :term, {}, class: 'form-control' %>
+    </div>
+    <div class="col-auto">
+      <%= submit_tag 'Filtrar', class: 'btn btn-primary' %>
+    </div>
+  </div>
 <% end %>
-
-<table>
-  <tr>
-    <th>Nome</th>
-    <th>Código SKU</th>
-    <th>Fornecedor</th>
-  </tr>
-  <% @product_models.each do |product_model| %>
-    <tr>
-      <td><%= link_to product_model.name, product_model %></td>
-      <td><%= product_model.sku %></td>
-      <td><%= product_model.supplier.fantasy_name %></td>
-    <tr>
-  <% end %>
-</table>
+<div class="row">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Nome</th>
+        <th scope="col">Código SKU</th>
+        <th scope="col">Fornecedor</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @product_models.each do |product_model| %>
+        <tr>
+          <td><%= link_to product_model.name, product_model %></td>
+          <td><%= product_model.sku %></td>
+          <td><%= product_model.supplier.fantasy_name %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

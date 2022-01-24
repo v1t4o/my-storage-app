@@ -1,12 +1,17 @@
-<h1>Kits de produtos cadastrados</h1>
-
-<table>
-  <tr>
-    <th>Nome</th>
-  </tr>
-  <% @product_bundles.each do |product_bundle| %>
-    <tr>
-      <td><%= link_to product_bundle.name, product_bundle %></td>
-    </tr>
-  <% end %>
-</table>
+<h2>Kits de produtos cadastrados</h2>
+<div class="row">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Nome</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @product_bundles.each do |product_bundle| %>
+        <tr>
+          <td><%= link_to product_bundle.name, product_bundle %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

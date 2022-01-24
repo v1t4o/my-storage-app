@@ -1,16 +1,34 @@
-<h1><%= @product_bundle.name %></h1>
-Código SKU: <%= @product_bundle.sku %>
-Peso: <%= @product_bundle.total_weight %>
-
-<table>
-  <tr>
-    <td>Nome</td>
-    <td>Fornecedor</td>
-  </tr>
-<% @product_bundle.product_models.each do |product| %>
-  <tr>
-    <td><%= product.name %></td>
-    <td><%= product.supplier.fantasy_name %></td>
-  </tr>
-<% end %>
-</table>
+<h2><%= @product_bundle.name %></h2>
+<div class="card">
+  <div class="card-header"><h4>Dados do Kit de Produtos</h4></div>
+  <div class="card-body">
+    <dl class="row">
+      <dt class="col-sm-2"><b>Código SKU:</b></dt> 
+      <dd class="col-sm-10"><%= @product_bundle.sku %></dd>
+      <dt class="col-sm-2"><b>Peso:</b></dt>
+      <dd class="col-sm-10"><%= @product_bundle.total_weight %></dd>
+    </dl>
+  </div>
+</div>
+<br>
+<div class="card">
+  <div class="card-header"><h4>Produtos selecionados</h4></div>
+  <div class="card-body">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Nome</th>
+          <th scope="col">Fornecedor</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @product_bundle.product_models.each do |product| %>
+          <tr>
+            <td><%= product.name %></td>
+            <td><%= product.supplier.fantasy_name %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
