@@ -5,4 +5,5 @@ class Warehouse < ApplicationRecord
   has_many :product_items
   has_many :warehouse_product_categories
   has_many :categories, through: :warehouse_product_categories
+  has_many :product_models, through: :product_items
 end

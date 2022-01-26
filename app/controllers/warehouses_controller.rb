@@ -55,4 +55,26 @@ class WarehousesController < ApplicationController
     flash[:alert] = 'Entrada de produtos realizada com sucesso!'
     redirect_to warehouse_path(pe.warehouse_id)
   end
+
+  def product_checkout
+    warehouse_id = params[:id]
+    quantity = params[:quantity].to_i
+    product_model_id = params[:product_model_id]
+
+    w = Warehouse.find(warehouse_id)
+    pm = ProductModel.find(product_model_id)
+    items = ProductItem.where("warehouse_id = ? AND product_model_id = ?", warehouse_id, product_model_id).count
+
+    if quantity <= 0
+      flash['alert'] = 'Não foi possível dar baixa: quantidade informada não é válida!'
+    elsif quantity <= items
+      quantity.times do 
+        pi = ProductItem.where("warehouse_id = ? AND product_model_id = ?", warehouse_id, product_model_id).first
+        pi.destroy
+      end
+    else
+      flash['alert'] = 'Não foi possível dar baixa: quantidade menor do que a disponível'
+    end
+    redirect_to w
+  end
 end

@@ -60,11 +60,10 @@
 </div>
 <br>
 <% if user_signed_in? %>
-  <div class="card">
+  <div id="entry" class="card">
     <div class="card-header"><h4 id="label-product-entry">Entrada de Itens</h4></div>
     <div class="card-body">
       <%= form_with(url: product_entry_warehouse_path(@warehouse.id)) do |f| %>
-        <% f.hidden_field(:warehouse_id, value: @warehouse.id) %>
         <div class="form-group">
           <b><%= f.label :quantity, 'Quantidade' %></b>
           <%= f.number_field :quantity, class: 'form-control' %>
@@ -72,6 +71,26 @@
         <div class="form-group">
           <b><%= f.label :product_model_id, 'Produto' %></b><br>
           <%= @product_models.empty? ? 'Não há modelos de produtos disponíveis' : f.collection_select(:product_model_id, @product_models, :id, :name, {}, class: 'form-control') %>
+        </div>
+        <br>
+        <div class="form-group">
+          <%= f.submit 'Confirmar', class: 'btn btn-success' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <br>
+  <div id="checkout" class="card">
+    <div class="card-header"><h4 id="label-product-entry">Baixa de Itens</h4></div>
+    <div class="card-body">
+      <%= form_with(url: product_checkout_warehouse_path(@warehouse.id)) do |f| %>
+        <div class="form-group">
+          <b><%= f.label :quantity, 'Quantidade' %></b>
+          <%= f.number_field :quantity, class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <b><%= f.label :product_model_id, 'Produto' %></b><br>
+          <%= @warehouse.product_models.empty? ? 'Não há modelos de produtos disponíveis' : f.collection_select(:product_model_id, @warehouse.product_models.uniq, :id, :name, {}, class: 'form-control') %>
         </div>
         <br>
         <div class="form-group">

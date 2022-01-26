@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root to: 'home#index'
   resources :warehouses, only: [:index, :show, :new, :create, :edit, :update] do
     post 'product_entry', on: :member
+    post 'product_checkout', on: :member
   end
   resources :suppliers, only: [:index, :show, :new, :create, :edit, :update]
   resources :product_models, only: [:index, :show, :new, :create, :edit, :update]

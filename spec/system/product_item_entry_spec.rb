@@ -56,7 +56,7 @@ describe 'Usuário dá entrada em novos itens' do
       expect(page).not_to have_content('Vinho Tinto Miolo')
     end
   end
-  
+
   context 'a partir da tela do galpão' do
     it 'mas não visualiza formulário caso não esteja logado' do
       category = Category.create!(name: 'Bebidas')
@@ -92,9 +92,11 @@ describe 'Usuário dá entrada em novos itens' do
       visit root_path
       click_on 'Visualizar galpões'
       click_on 'Maceió'
-      fill_in 'Quantidade', with: 2
-      select 'Vinho Tinto Miolo', from: 'Produto'
-      click_on 'Confirmar'
+      within('div#entry') do
+        fill_in 'Quantidade', with: 2
+        select 'Vinho Tinto Miolo', from: 'Produto'
+        click_on 'Confirmar'
+      end
 
       expect(page).to have_content("Entrada de produtos realizada com sucesso!")
       expect(current_path).to eq warehouse_path(warehouse.id)
@@ -161,5 +163,7 @@ describe 'Usuário dá entrada em novos itens' do
       expect(page).to have_content('Farinha Hikari')
       expect(page).not_to have_content('Vinho Tinto Miolo')
     end
+
+
   end
 end
