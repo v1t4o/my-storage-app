@@ -1,7 +1,7 @@
 class ProductItemsController < ApplicationController
   def new_entry
     @warehouses = Warehouse.all
-    @product_models = ProductModel.all
+    @product_models = ProductModel.active
   end
 
   def process_entry

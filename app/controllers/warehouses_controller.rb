@@ -29,7 +29,7 @@ class WarehousesController < ApplicationController
 
   def show
     @warehouse = Warehouse.find(params[:id])
-    @product_models = ProductModel.joins(:category).where('categories.id IN (?)', @warehouse.category_ids)
+    @product_models = ProductModel.where('category_id IN (?)', @warehouse.category_ids).active
   end
 
   def edit

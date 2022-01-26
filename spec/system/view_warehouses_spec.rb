@@ -24,7 +24,7 @@ describe 'Usuário vê galpões' do
     visit root_path
     click_on 'Visualizar galpões'
 
-    expect(page).to have_css('h3', text: 'Galpões cadastrados')
+    expect(page).to have_css('h2', text: 'Galpões cadastrados')
     expect(page).to have_css('td', text: 'Guarulhos')
     expect(page).to have_css('td', text: 'GRU')
     expect(page).to have_css('td', text: 'Porto Alegre')

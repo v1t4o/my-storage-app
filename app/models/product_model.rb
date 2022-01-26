@@ -7,10 +7,12 @@ class ProductModel < ApplicationRecord
 
   before_create :generate_sku
 
-  validates :name, :weight, :height, :length, :width, :supplier_id, :category_id, presence: true
+  validates :name, :weight, :height, :length, :width, :supplier_id, :category_id, :status, presence: true
   validates :sku, uniqueness: true
   validates :weight, :height, :length, :width, exclusion: {in: [0] }
   
+  enum status: { active: 0, inactive: 1 }
+
   def dimensions
     "#{height} x #{width} x #{length}"
   end

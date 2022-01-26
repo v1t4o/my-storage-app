@@ -35,7 +35,7 @@ describe 'Usuário vê modelos de produtos' do
     
     visit root_path
     click_on 'Visualizar modelos de produtos'
-    fill_in 'Buscar por fornecedor:', with: 'Fábrica'
+    fill_in 'Busca:', with: 'Fábrica'
     click_on 'Filtrar'
     
     expect(page).to have_content 'Pelúcia Dumbo'

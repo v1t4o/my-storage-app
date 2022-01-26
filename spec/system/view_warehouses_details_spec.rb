@@ -28,8 +28,8 @@ describe 'Visitante vê um galpão' do
       click_on 'Maceió'
     end
 
-    expect(page).to have_css('h1', text: 'Maceió')
-    expect(page).to have_css('h2', text: 'MCZ')
+    expect(page).to have_css('h2', text: 'Maceió')
+    expect(page).to have_css('h4', text: 'MCZ')
     expect(page).to have_css('dt', text: 'Descrição:')
     expect(page).to have_css('dd', text: 'Ótimo galpão numa linda cidade')
     expect(page).to have_css('dt', text: 'Endereço:')

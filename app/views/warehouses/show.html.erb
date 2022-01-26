@@ -6,10 +6,10 @@
     <div class="col-auto float-right">
       <%= link_to 'Editar', edit_warehouse_path(@warehouse), class: 'btn btn-warning' %>
     </div>
-    <div class="col-auto float-right">
-      <%= link_to 'Voltar', warehouses_path, class: 'btn btn-primary' %>
-    </div>
   <% end %>
+  <div class="col-auto float-right">
+    <%= link_to 'Voltar', warehouses_path, class: 'btn btn-primary' %>
+  </div>
 </div>
 
 <div class="card">
@@ -71,7 +71,7 @@
         </div>
         <div class="form-group">
           <b><%= f.label :product_model_id, 'Produto' %></b><br>
-          <%= @product_models.empty? ? 'Não há modelos de produtos cadastrados' : f.collection_select(:product_model_id, @product_models, :id, :name, {}, class: 'form-control') %>
+          <%= @product_models.empty? ? 'Não há modelos de produtos disponíveis' : f.collection_select(:product_model_id, @product_models, :id, :name, {}, class: 'form-control') %>
         </div>
         <br>
         <div class="form-group">

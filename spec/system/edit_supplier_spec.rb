@@ -45,8 +45,8 @@ describe 'Usuário edita um fornecedor' do
     fill_in 'Telefone', with: '(11) 4186-9866'
     click_on 'Gravar'
 
-    expect(page).to have_css('h1', text: 'Samsung Infinity')
-    expect(page).to have_css('h2', text: 'Samsung Infinity LTDA')
+    expect(page).to have_css('h2', text: 'Samsung Infinity')
+    expect(page).to have_css('h4', text: 'Samsung Infinity LTDA')
     expect(page).to have_content '32.451.879/0001-77'
     expect(page).to have_content 'Av Rio Branco, 1022 - São Paulo/SP'
     expect(page).to have_content 'contato@samsung.com.br'

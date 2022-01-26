@@ -21,14 +21,16 @@
         <th scope="col">Nome</th>
         <th scope="col">Código SKU</th>
         <th scope="col">Fornecedor</th>
+        <th scope="col">Ações</th>
       </tr>
     </thead>
     <tbody>
       <% @product_models.each do |product_model| %>
-        <tr>
+        <tr id="product-model-<%= product_model.id %>">
           <td><%= link_to product_model.name, product_model %></td>
           <td><%= product_model.sku %></td>
           <td><%= product_model.supplier.fantasy_name %></td>
+          <td><%= link_to 'Editar', edit_product_model_path(product_model.id), class: 'btn btn-warning' %></td>
         </tr>
       <% end %>
     </tbody>

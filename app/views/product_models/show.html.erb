@@ -23,6 +23,8 @@
       <dd class="col-sm-10"><%= @product_model.supplier.fantasy_name %></dd>
       <dt class="col-sm-2">Categoria:</dt>
       <dd class="col-sm-10"><%= @product_model.category.name %></dd>
+      <dt class="col-sm-2">Status:</dt>
+      <dd class="col-sm-10"><%= @product_model.active? ? 'Ativo' : 'Inativo' %></dd>
     </dl>
   </div>
 </div>

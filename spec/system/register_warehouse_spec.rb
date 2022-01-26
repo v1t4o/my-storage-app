@@ -59,8 +59,8 @@ describe 'Usuário cadastra um galpão' do
     check 'Alimentos'
     click_on 'Gravar'
 
-    expect(page).to have_css('h1', text: 'Juiz de Fora')
-    expect(page).to have_css('h2', text: 'JDF')
+    expect(page).to have_css('h2', text: 'Juiz de Fora')
+    expect(page).to have_css('h4', text: 'JDF')
     expect(page).to have_css('dt', text: 'Descrição:')
     expect(page).to have_css('dd', text: 'Um galpão mineiro com o pé no Rio')
     expect(page).to have_css('dt', text: 'Endereço:')

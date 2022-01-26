@@ -44,6 +44,10 @@
         <b><%= form.label :category_id, 'Categoria' %></b>
         <%= form.collection_select(:category_id, Category.all, :id, :name, {}, class: 'form-control') %>
       </div>
+      <div class="col-sm">
+        <b><%= form.label :status, 'Status' %></b>
+        <%= form.select(:status, options_for_select([['Ativo', :active], ['Inativo', :inactive]]), {}, class: 'form-control') %>
+      </div>
     </div>
     <br>
     <div class="form-group">

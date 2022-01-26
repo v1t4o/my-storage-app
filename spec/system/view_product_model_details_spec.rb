@@ -25,7 +25,7 @@ describe 'Usuário vê estoque de produtos' do
     expect(page).to have_content "#{p1.dimensions}"
     expect(page).to have_content "#{p1.sku}"
     expect(page).to have_content 'Fábrica Geek'
-    expect(page).to have_css('h2', text: 'Estoques')
+    expect(page).to have_css('h4', text: 'Estoques')
     within("tr#warehouse-#{w1.id}") do
       expect(page).to have_content('Guarulhos')
       expect(page).to have_content('5')

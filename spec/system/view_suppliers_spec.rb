@@ -35,8 +35,8 @@ describe 'Usuário vê fornecedores' do
     click_on 'Visualizar fornecedores'
     click_on 'Fábrica Geek'
 
-    expect(page).to have_css('h1', text: 'Fábrica Geek')
-    expect(page).to have_css('h2', text: 'Produtos deste fornecedor:')
+    expect(page).to have_css('h2', text: 'Fábrica Geek')
+    expect(page).to have_css('h4', text: 'Produtos deste fornecedor:')
     expect(page).to have_content('Pelúcia Dumbo')
     expect(page).not_to have_content('Caneca Star Wars')
   end

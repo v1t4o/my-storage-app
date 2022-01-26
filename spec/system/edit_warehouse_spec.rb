@@ -74,8 +74,8 @@ describe 'Usuário edita galpão' do
     fill_in 'Área Útil', with: '9000'
     click_on 'Gravar'
     
-    expect(page).to have_css('h1', text: 'Maceió')
-    expect(page).to have_css('h2', text: 'MCZ')
+    expect(page).to have_css('h2', text: 'Maceió')
+    expect(page).to have_css('h4', text: 'MCZ')
     expect(page).to have_css('dt', text: 'Descrição:')
     expect(page).to have_css('dd', text: 'Um galpão nordestino')
     expect(page).to have_css('dt', text: 'Endereço:')
