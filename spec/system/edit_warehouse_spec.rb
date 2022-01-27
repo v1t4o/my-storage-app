@@ -24,7 +24,7 @@ describe 'Usuário edita galpão' do
     expect(current_path).to eq new_user_session_path
   end
 
-  it 'através de um link da página do galpão' do
+  it 'através de um botão da página de galpões' do
     user = User.create!(email: 'joao@email.com', password: '12345678')
     warehouse = Warehouse.create(name: 'Maceió', code: 'MCZ', description: 'Ótimo galpão numa linda cidade',
                      address: 'Av Fernandes Lima', city: 'Maceió', state: 'AL',
@@ -36,6 +36,32 @@ describe 'Usuário edita galpão' do
     within("tr#warehouse-#{warehouse.id}") do
       click_on 'Editar'
     end
+
+    expect(page).to have_css('h2', text: 'Editar Galpão')
+    expect(page).to have_field 'Nome'
+    expect(page).to have_field 'Código'
+    expect(page).to have_field 'Endereço'
+    expect(page).to have_field 'Cidade'
+    expect(page).to have_field 'Estado'
+    expect(page).to have_field 'CEP'
+    expect(page).to have_field 'Descrição'
+    expect(page).to have_field 'Área Total'
+    expect(page).to have_field 'Área Útil'
+    expect(page).to have_button 'Gravar'
+
+  end
+
+  it 'através de um botão no show do galpão' do
+    user = User.create!(email: 'joao@email.com', password: '12345678')
+    warehouse = Warehouse.create(name: 'Maceió', code: 'MCZ', description: 'Ótimo galpão numa linda cidade',
+                     address: 'Av Fernandes Lima', city: 'Maceió', state: 'AL',
+                     postal_code: '57050-000', total_area: 10000, useful_area: 8000)
+
+    login_as(user, :scope => :user)
+    visit root_path
+    click_on 'Visualizar galpões'
+    click_on 'Maceió'
+    click_on 'Editar'
 
     expect(page).to have_css('h2', text: 'Editar Galpão')
     expect(page).to have_field 'Nome'

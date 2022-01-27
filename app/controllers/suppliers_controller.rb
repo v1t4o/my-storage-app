@@ -2,6 +2,11 @@ class SuppliersController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create]
   
   def index
+    if params[:term]
+      @suppliers = Supplier.where("fantasy_name LIKE ? OR legal_name LIKE ?", "%#{params[:term]}%", "%#{params[:term]}%")
+      return
+    end
+
     @suppliers = Supplier.all
   end
   

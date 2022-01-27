@@ -1,7 +1,31 @@
 require 'rails_helper'
 
 describe 'Usuário edita um modelo de produto' do
-  it 'através de um link na página do produto' do
+  it 'através de um botão na index de modelos de produtos' do
+    user = User.create!(email: 'joao@email.com', password: '12345678')    
+    supplier = Supplier.create(fantasy_name: 'Cerâmicas Geek', legal_name: 'Geek Comercio de Ceramicas LTDA', eni: '32.451.879/0001-77', email: 'contato@geek.com')
+    category = Category.create!(name: 'Utensílios')
+    product_model = ProductModel.create!(name: 'Pelúcia Dumbo', height: '50', width: '40', length: '20', weight: 400, supplier: supplier, category: category)
+
+    login_as(user, :scope => :user)
+    visit root_path
+    click_on 'Visualizar modelos de produtos'
+    within("tr#product-model-#{product_model.id}") do
+      click_on 'Editar'
+    end
+    
+    expect(page).to have_css('h2', text: 'Edição de modelo de produto')
+    expect(page).to have_field 'Nome'
+    expect(page).to have_field 'Peso'
+    expect(page).to have_field 'Altura'
+    expect(page).to have_field 'Largura'
+    expect(page).to have_field 'Profundidade'
+    expect(page).to have_field 'Fornecedor'
+    expect(page).to have_field 'Categoria'
+    expect(page).to have_button 'Gravar'
+  end
+
+  it 'através de um botão na página do produto' do
     user = User.create!(email: 'joao@email.com', password: '12345678')    
     supplier = Supplier.create(fantasy_name: 'Cerâmicas Geek', legal_name: 'Geek Comercio de Ceramicas LTDA', eni: '32.451.879/0001-77', email: 'contato@geek.com')
     other_supplier = Supplier.create!(fantasy_name: 'Canecas e Copos', legal_name: 'A Fantastica Fabrica de Canecas LTDA', eni: '45.896.325/0001-88', address: 'Av das Canecas', email: 'contato@canecas.com', phone: '11 4578-9986')
@@ -84,5 +108,14 @@ describe 'Usuário edita um modelo de produto' do
     expect(page).to have_content 'Largura não pode ficar em branco'
     expect(page).to have_content 'Profundidade não pode ficar em branco'
     expect(page).not_to have_content 'Modelo de produto alterado com sucesso'
+  end
+
+  it 'e tenta editar um modelo de produto não existente' do
+    user = User.create!(email: 'joao@email.com', password: '12345678')
+    
+    login_as(user, :scope => :user)
+    visit edit_product_model_path(777)
+
+    expect(page).to have_content('Objeto não encontrado')
   end
 end

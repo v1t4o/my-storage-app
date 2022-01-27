@@ -24,6 +24,8 @@ class ProductEntry
           product_model.product_items.create(warehouse: warehouse)
         end
       end
+      return true
     end
+    false
   end
 end

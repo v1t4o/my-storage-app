@@ -27,6 +27,7 @@ describe 'Usuário cadastra um modelo de produto' do
     fill_in 'Profundidade', with: '14'
     select 'Cerâmicas Geek', from: 'Fornecedor'
     select 'Utensílios', from: 'Categoria'
+    select 'Ativo', from: 'Status'
     click_on 'Gravar'
 
     p = ProductModel.last
@@ -36,6 +37,32 @@ describe 'Usuário cadastra um modelo de produto' do
     expect(page).to have_content 'Dimensões: 12 x 8 x 14'
     expect(page).to have_content "Código SKU: #{p.sku}"
     expect(page).to have_content 'Fornecedor: Cerâmicas Geek'
+    expect(page).to have_content 'Status: Ativo'
+  end
+
+  it 'e alguns campos são obrigatórios' do
+    user = User.create!(email: 'joao@email.com', password: '12345678')
+    Supplier.create(fantasy_name: 'Cerâmicas Geek', legal_name: 'Geek Comercio de Ceramicas LTDA', eni: '32.451.879/0001-77', email: 'contato@geek.com')
+    Supplier.create(fantasy_name: 'Fábrica de Camisetas', legal_name: 'Camisas BR ME')
+    Category.create!(name: 'Utensílios')
+
+    login_as(user, :scope => :user)
+    visit root_path
+    click_on 'Cadastrar modelo de produto'
+    fill_in 'Nome', with: ''
+    fill_in 'Peso', with: ''
+    fill_in 'Altura', with: ''
+    fill_in 'Largura', with: ''
+    fill_in 'Profundidade', with: ''
+    click_on 'Gravar'
+
+    expect(page).not_to have_content 'Modelo de produto registrado com sucesso'
+    expect(page).to have_content 'Não foi possível gravar modelo de produto'
+    expect(page).to have_content "Nome não pode ficar em branco"
+    expect(page).to have_content "Peso não pode ficar em branco"
+    expect(page).to have_content "Altura não pode ficar em branco"
+    expect(page).to have_content "Largura não pode ficar em branco"
+    expect(page).to have_content "Profundidade não pode ficar em branco"
   end
 
   it 'e não vê os produtos de outro fornecedor' do

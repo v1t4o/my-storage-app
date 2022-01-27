@@ -7,7 +7,7 @@
         <b><%= label_tag :term, 'Busca:' %></b>
       </div>
       <div class="col-sm">
-        <%= text_field_tag :term, {}, class: 'form-control' %>
+        <%= text_field_tag :term, {}, {class: 'form-control', placeholder: 'Digite o nome do galpão ou parte dele'} %>
       </div>
       <div class="col-auto">
         <%= submit_tag 'Filtrar', class: 'btn btn-primary' %>

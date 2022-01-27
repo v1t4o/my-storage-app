@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'Usuário edita um fornecedor' do
-  it 'através de um link na index de fornecedor' do
+  it 'através de um botão na index de fornecedor' do
     user = User.create!(email: 'joao@email.com', password: '12345678')
     
     supplier1 = Supplier.create!(fantasy_name: 'Samsung', legal_name: 'Samsung do BR LTDA',
@@ -16,6 +16,33 @@ describe 'Usuário edita um fornecedor' do
     visit root_path
     click_on 'Visualizar fornecedores'
     click_on 'Editar', id: "edit-#{supplier1.id}"
+
+    expect(current_path).to eq edit_supplier_path(supplier1.id)
+    expect(page).to have_css('h2', text: 'Edição de fornecedor')
+    expect(page).to have_field 'Nome Fantasia'
+    expect(page).to have_field 'Razão Social'
+    expect(page).to have_field 'CNPJ'
+    expect(page).to have_field 'Endereço'
+    expect(page).to have_field 'E-mail'
+    expect(page).to have_field 'Telefone'
+  end
+
+  it 'através de um botão no show de fornecedor' do
+    user = User.create!(email: 'joao@email.com', password: '12345678')
+    
+    supplier1 = Supplier.create!(fantasy_name: 'Samsung', legal_name: 'Samsung do BR LTDA',
+                            eni: '32.451.879/0001-77', address: 'Av Industrial, 1000, São Paulo',
+                            email: 'financeiro@samsung.com.br', phone: '11 1234-5678')
+
+    supplier2 = Supplier.create!(fantasy_name: 'Xiaomi', legal_name: 'Xiaomi do BR LTDA',
+                              eni: '45.125.895/0001-88', address: 'Av Industrial, 1000, São Paulo',
+                              email: 'financeiro@xiaomi.com.br', phone: '11 1234-5678')
+    
+    login_as(user, :scope => :user)
+    visit root_path
+    click_on 'Visualizar fornecedores'
+    click_on 'Samsung'
+    click_on 'Editar'
 
     expect(current_path).to eq edit_supplier_path(supplier1.id)
     expect(page).to have_css('h2', text: 'Edição de fornecedor')
@@ -78,5 +105,14 @@ describe 'Usuário edita um fornecedor' do
     expect(page).to have_content "Razão Social não pode ficar em branco"
     expect(page).to have_content "CNPJ não pode ficar em branco"
     expect(page).to have_content "E-mail não pode ficar em branco"
+  end
+
+  it 'e tenta editar um fornecedor não existente' do
+    user = User.create!(email: 'joao@email.com', password: '12345678')
+    
+    login_as(user, :scope => :user)
+    visit edit_supplier_path(777)
+
+    expect(page).to have_content('Objeto não encontrado')
   end
 end

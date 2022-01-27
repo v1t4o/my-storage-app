@@ -1,7 +1,20 @@
 require 'rails_helper'
 
-describe 'Usuário vê os detalhes de um fornecedor' do
-  it 'com sucesso' do
+describe 'Usuário vê um fornecedor' do
+  it 'e consegue voltar para tela inicial' do
+    supplier = Supplier.create(fantasy_name: 'Cerâmicas Geek', legal_name: 'Geek Comercio de Ceramicas LTDA',
+                               eni: '32.451.879/0001-77', address: 'Avenida Spider Man, 3',
+                               email: 'geekceramicas@gmail.com', phone: '31 3456-7890')
+    
+    visit root_path
+    click_on 'Visualizar fornecedores'
+    click_on 'Cerâmicas Geek'
+    click_on 'Voltar'
+
+    expect(current_path).to eq suppliers_path
+  end
+
+  it 'e vê todos os dados cadastrados' do
     supplier = Supplier.create(fantasy_name: 'Cerâmicas Geek', legal_name: 'Geek Comercio de Ceramicas LTDA',
                                eni: '32.451.879/0001-77', address: 'Avenida Spider Man, 3',
                                email: 'geekceramicas@gmail.com', phone: '31 3456-7890')
@@ -33,5 +46,11 @@ describe 'Usuário vê os detalhes de um fornecedor' do
     expect(page).to have_css('h4', text: 'Produtos deste fornecedor:')
     expect(page).to have_content('Caneca Star Wars')
     expect(page).to have_content('Pelúcia Dumbo')
+  end
+
+  it 'não existente' do
+    visit supplier_path(777)
+
+    expect(page).to have_content('Objeto não encontrado')
   end
 end

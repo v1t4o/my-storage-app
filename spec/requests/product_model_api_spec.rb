@@ -119,8 +119,8 @@ describe 'ProductModel API' do
       expect(response.body).to include "Altura não pode ficar em branco"
       expect(response.body).to include "Profundidade não pode ficar em branco"
       expect(response.body).to include "Largura não pode ficar em branco"
-      expect(response.body).to include "Fornecedor não pode ficar em branco"
-      expect(response.body).to include "Categoria não pode ficar em branco"
+      expect(response.body).to include "Fornecedor é obrigatório(a)"
+      expect(response.body).to include "Categoria é obrigatório(a)"
     end
   end
 end
