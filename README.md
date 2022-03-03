@@ -10,6 +10,17 @@ Sistema de Gestão de Estoques em desenvolvimento com Ruby on Rails para o progr
 ```bash
 bin/setup
 ```
+## Rodando o projeto com Docker
+
+### Comando para rodar com Docker puro
+
+```bash
+docker build . -t warehouse
+
+docker run -it -p 3000:3000 -v ~/caminho_ate_o_projeto/my-storage-app:/app warehouse:latest bash
+```
+
+
 ## API
 
 ### Galpões
